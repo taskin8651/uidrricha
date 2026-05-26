@@ -15,25 +15,35 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $aboutPageSection = AboutPageSection::with('media')->first();
-        $heroSection = HeroSection::with('media')->first();
-        $dentistProfileSection = DentistProfileSection::with('media')->first();
-        $beforeAfterGalleries = BeforeAfterGallery::with('media')
-            ->where('status', 1)
-            ->orderBy('sort_order', 'asc')
-            ->take(3)
-            ->get();
-        $serviceSections = ServiceSection::with(['activeItems', 'media'])
-            ->where('status', 1)
-            ->orderBy('sort_order', 'asc')
-            ->take(4)
-            ->get();
-        $testimonials = Testimonial::where('status', 1)
-            ->orderByDesc('is_featured')
-            ->orderBy('sort_order', 'asc')
-            ->take(3)
-            ->get();
-        $websiteSetting = WebsiteSetting::first();
+        try {
+            $aboutPageSection = AboutPageSection::with('media')->first();
+            $heroSection = HeroSection::with('media')->first();
+            $dentistProfileSection = DentistProfileSection::with('media')->first();
+            $beforeAfterGalleries = BeforeAfterGallery::with('media')
+                ->where('status', 1)
+                ->orderBy('sort_order', 'asc')
+                ->take(3)
+                ->get();
+            $serviceSections = ServiceSection::with(['activeItems', 'media'])
+                ->where('status', 1)
+                ->orderBy('sort_order', 'asc')
+                ->take(4)
+                ->get();
+            $testimonials = Testimonial::where('status', 1)
+                ->orderByDesc('is_featured')
+                ->orderBy('sort_order', 'asc')
+                ->take(3)
+                ->get();
+            $websiteSetting = WebsiteSetting::first();
+        } catch (\Throwable $exception) {
+            $aboutPageSection = null;
+            $heroSection = null;
+            $dentistProfileSection = null;
+            $beforeAfterGalleries = collect();
+            $serviceSections = collect();
+            $testimonials = collect();
+            $websiteSetting = null;
+        }
 
         return view('frontend.index', compact(
             'aboutPageSection',

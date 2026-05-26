@@ -9,7 +9,11 @@ class DentistController extends Controller
 {
     public function index()
     {
-        $dentistProfileSection = DentistProfileSection::with('media')->first();
+        try {
+            $dentistProfileSection = DentistProfileSection::with('media')->first();
+        } catch (\Throwable $exception) {
+            $dentistProfileSection = null;
+        }
 
         return view('frontend.dentist', compact('dentistProfileSection'));
     }

@@ -9,7 +9,11 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $aboutPageSection = AboutPageSection::with('media')->first();
+        try {
+            $aboutPageSection = AboutPageSection::with('media')->first();
+        } catch (\Throwable $exception) {
+            $aboutPageSection = null;
+        }
 
         return view('frontend.about', compact('aboutPageSection'));
     }

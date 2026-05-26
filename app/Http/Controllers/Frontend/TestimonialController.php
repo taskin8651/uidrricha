@@ -9,9 +9,13 @@ class TestimonialController extends Controller
 {
     public function index()
     {
-        $testimonials = Testimonial::where('status', 1)
-            ->orderBy('sort_order', 'asc')
-            ->get();
+        try {
+            $testimonials = Testimonial::where('status', 1)
+                ->orderBy('sort_order', 'asc')
+                ->get();
+        } catch (\Throwable $exception) {
+            $testimonials = collect();
+        }
 
         return view('frontend.testimonials', compact('testimonials'));
     }

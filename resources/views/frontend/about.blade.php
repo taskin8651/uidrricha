@@ -2,416 +2,712 @@
 @section('content')
 
 
-  <!-- ABOUT HERO START -->
-  <section class="about-page-hero">
-    <div class="about-hero-shape shape-one"></div>
-    <div class="about-hero-shape shape-two"></div>
+    <!-- ABOUT BREADCRUMB HERO START -->
+    <section class="about-page-hero">
+        <div class="about-hero-glow about-hero-glow-one"></div>
+        <div class="about-hero-glow about-hero-glow-two"></div>
 
-    <div class="container about-hero-wrap">
-      <span class="about-page-tag">
-        <i class="fa-solid fa-tooth"></i>
-        About OM Dental Clinic
-      </span>
+        <div class="container">
+            <div class="about-hero-box">
 
-      <h1>Modern dental care with comfort, hygiene and trust.</h1>
+                <div class="about-hero-content">
+                    <span class="section-badge">
+                        <i class="bi bi-hospital"></i>
+                        About Dr. Richa Dental Care
+                    </span>
 
-      <p>
-        We provide professional, gentle and technology-driven dental care
-        for every smile.
-      </p>
+                    <h1>
+                        Gentle, clean and premium dental care in
+                        <span>Keshri Nagar, Patna.</span>
+                    </h1>
 
-      <div class="page-breadcrumb">
-        <a href="{{ route('frontend.home') }}">Home</a>
-        <i class="fa-solid fa-angle-right"></i>
-        <span>About Clinic</span>
-      </div>
-    </div>
-  </section>
-  <!-- ABOUT HERO END -->
+                    <p>
+                        Dr. Richa Dental Care is designed to provide a calm, hygienic and patient-friendly
+                        dental experience near Baba Chowk, Bank Colony, Keshri Nagar, Patna.
+                    </p>
 
-  @php
-    $about = $aboutPageSection ?? null;
-
-    $aboutImage = $about && $about->getFirstMediaUrl('about_intro_image')
-        ? $about->getFirstMediaUrl('about_intro_image')
-        : asset('assets/img/clinic.png');
-@endphp
-
-@if($about)
-
-<!-- ABOUT INTRO START -->
-<section class="about-intro-section">
-    <div class="container about-intro-grid">
-
-        <div class="about-intro-image">
-            <img src="{{ $aboutImage }}"
-                 alt="{{ $about->intro_title ?: 'OM Dental Clinic' }}">
-
-            @if($about->experience_number || $about->experience_text)
-                <div class="about-experience-card">
-                    @if($about->experience_number)
-                        <strong>{{ $about->experience_number }}</strong>
-                    @endif
-
-                    @if($about->experience_text)
-                        <span>{{ $about->experience_text }}</span>
-                    @endif
+                    <nav class="about-breadcrumb" aria-label="breadcrumb">
+                        <a href="index.html">Home</a>
+                        <i class="bi bi-chevron-right"></i>
+                        <span>About Clinic</span>
+                    </nav>
                 </div>
-            @endif
-        </div>
 
-        <div class="about-intro-content">
-
-            @if($about->intro_tag)
-                <span class="section-tag">{{ $about->intro_tag }}</span>
-            @endif
-
-            @if($about->intro_title)
-                <h2>{{ $about->intro_title }}</h2>
-            @endif
-
-            @if($about->intro_description_1)
-                <p>{{ $about->intro_description_1 }}</p>
-            @endif
-
-            @if($about->intro_description_2)
-                <p>{{ $about->intro_description_2 }}</p>
-            @endif
-
-            <div class="about-feature-list">
-
-                @if($about->feature_1_title)
-                    <div>
-                        <i class="{{ $about->feature_1_icon ?: 'fa-solid fa-user-doctor' }}"></i>
-                        <span>{{ $about->feature_1_title }}</span>
+                <div class="about-hero-card">
+                    <div class="hero-info-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div>
+                            <small>Clinic Location</small>
+                            <strong>Near Baba Chowk, Keshri Nagar</strong>
+                        </div>
                     </div>
-                @endif
 
-                @if($about->feature_2_title)
-                    <div>
-                        <i class="{{ $about->feature_2_icon ?: 'fa-solid fa-shield-heart' }}"></i>
-                        <span>{{ $about->feature_2_title }}</span>
+                    <div class="hero-info-item">
+                        <i class="bi bi-clock-fill"></i>
+                        <div>
+                            <small>Clinic Hours</small>
+                            <strong>Mon - Sat, 10 AM - 8:30 PM</strong>
+                        </div>
                     </div>
-                @endif
 
-                @if($about->feature_3_title)
-                    <div>
-                        <i class="{{ $about->feature_3_icon ?: 'fa-solid fa-microscope' }}"></i>
-                        <span>{{ $about->feature_3_title }}</span>
+                    <div class="hero-info-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <div>
+                            <small>Call Clinic</small>
+                            <strong>+91 96087 01058</strong>
+                        </div>
                     </div>
-                @endif
+                </div>
 
-                @if($about->feature_4_title)
-                    <div>
-                        <i class="{{ $about->feature_4_icon ?: 'fa-solid fa-heart-pulse' }}"></i>
-                        <span>{{ $about->feature_4_title }}</span>
+            </div>
+        </div>
+    </section>
+    <!-- ABOUT BREADCRUMB HERO END -->
+
+
+    <!-- CLINIC INTRO START -->
+    <section class="about-intro-section section-padding">
+        <div class="about-bg-glow about-glow-one"></div>
+        <div class="about-bg-glow about-glow-two"></div>
+        <div class="about-intro-pattern"></div>
+
+        <div class="container">
+            <div class="about-intro-wrapper">
+
+                <!-- LEFT VISUAL START -->
+                <div class="about-intro-visual">
+
+                    <div class="about-main-image">
+                        <img src="assets/img/img2.png" alt="Modern dental clinic in Keshri Nagar Patna">
+
+                        <div class="about-image-label">
+                            <span class="about-image-label-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </span>
+
+                            <span>
+                                <strong>Clean & Comfort-focused</strong>
+                                <small>Dental wellness care</small>
+                            </span>
+                        </div>
+
+                        <div class="about-image-top-chip">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span>Modern dental clinic in Patna</span>
+                        </div>
                     </div>
-                @endif
+
+                    <div class="about-stats-row mt-3">
+                        <div>
+                            <span class="about-stat-icon">
+                                <i class="bi bi-person-heart"></i>
+                            </span>
+                            <strong>Patient</strong>
+                            <small>First Approach</small>
+                        </div>
+
+                        <div>
+                            <span class="about-stat-icon">
+                                <i class="bi bi-heart-pulse"></i>
+                            </span>
+                            <strong>Modern</strong>
+                            <small>Dental Care</small>
+                        </div>
+
+                        <div>
+                            <span class="about-stat-icon">
+                                <i class="bi bi-stars"></i>
+                            </span>
+                            <strong>Calm</strong>
+                            <small>Clinic Experience</small>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- LEFT VISUAL END -->
+
+
+                <!-- RIGHT CONTENT START -->
+                <div class="about-intro-content">
+
+                    <span class="section-badge">
+                        <i class="bi bi-stars"></i>
+                        Clinic Introduction
+                    </span>
+
+                    <h2>Soft, clean and comfortable dental care experience.</h2>
+
+                    <p>
+                        Dr. Richa Dental Care provides professional dental treatments with a focus on hygiene,
+                        comfort and clear patient guidance. The clinic is located near Baba Chowk, Bank Colony,
+                        Keshri Nagar, Patna and is easily accessible from North Patel Nagar and Rajeev Nagar.
+                    </p>
+
+                    <div class="about-note-card">
+                        <div class="about-note-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+
+                        <div>
+                            <h3>Dental care with clarity and comfort.</h3>
+                            <p>
+                                From consultation to treatment explanation, the experience is planned to help
+                                patients feel relaxed, informed and confident.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="about-feature-list">
+
+                        <div class="about-feature-item">
+                            <span class="feature-check">
+                                <i class="bi bi-check2"></i>
+                            </span>
+
+                            <span>Clean and patient-friendly clinic environment</span>
+                        </div>
+
+                        <div class="about-feature-item">
+                            <span class="feature-check">
+                                <i class="bi bi-check2"></i>
+                            </span>
+
+                            <span>Modern dental services for family dental care</span>
+                        </div>
+
+                        <div class="about-feature-item">
+                            <span class="feature-check">
+                                <i class="bi bi-check2"></i>
+                            </span>
+
+                            <span>Easy call, WhatsApp and appointment support</span>
+                        </div>
+
+                    </div>
+
+                    <div class="about-intro-actions">
+                        <a href="appointment.html" class="about-intro-primary">
+                            Book Appointment
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                        <a href="tel:+919608701058" class="about-intro-secondary">
+                            <i class="bi bi-telephone-fill"></i>
+                            Call Clinic
+                        </a>
+                    </div>
+
+                </div>
+                <!-- RIGHT CONTENT END -->
 
             </div>
-
-            @if($about->intro_button_text && $about->intro_button_url)
-                <a href="{{ $about->intro_button_url }}" class="btn btn-primary">
-                    {{ $about->intro_button_text }}
-                </a>
-            @endif
-
         </div>
-
-    </div>
-</section>
-<!-- ABOUT INTRO END -->
+    </section>
+    <!-- CLINIC INTRO END -->
 
 
-<!-- MISSION VISION START -->
-<section class="about-mission-section">
-    <div class="container mission-grid">
+    <!-- CARE APPROACH START -->
+    <section class="care-approach-section section-padding">
+        <div class="care-bg-glow care-glow-one"></div>
+        <div class="care-bg-glow care-glow-two"></div>
+        <div class="care-pattern"></div>
 
-        @if($about->mission_title || $about->mission_description)
-            <div class="mission-card">
-                <div class="mission-icon">
-                    <i class="{{ $about->mission_icon ?: 'fa-solid fa-bullseye' }}"></i>
+        <div class="container">
+
+            <div class="section-heading text-center care-heading">
+                <span class="section-badge">
+                    <i class="bi bi-person-heart"></i>
+                    Patient Care Approach
+                </span>
+
+                <h2>Every visit is planned around trust, hygiene and comfort.</h2>
+
+                <p>
+                    The clinic focuses on a calm environment, proper treatment guidance and easy
+                    patient communication before and after dental procedures.
+                </p>
+            </div>
+
+            <div class="care-grid">
+
+                <div class="care-card">
+                    <span class="care-number">01</span>
+
+                    <div class="care-icon">
+                        <i class="bi bi-chat-heart"></i>
+                    </div>
+
+                    <div class="care-content">
+                        <h3>Clear Consultation</h3>
+                        <p>
+                            Patients receive simple explanation of dental concerns, treatment options and care steps.
+                        </p>
+                    </div>
+
+                    <span class="care-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
                 </div>
 
-                @if($about->mission_title)
-                    <h3>{{ $about->mission_title }}</h3>
-                @endif
+                <div class="care-card care-card-featured">
+                    <span class="care-number">02</span>
 
-                @if($about->mission_description)
-                    <p>{{ $about->mission_description }}</p>
-                @endif
-            </div>
-        @endif
+                    <div class="care-feature-badge">
+                        <i class="bi bi-stars"></i>
+                        Most Focused
+                    </div>
 
-        @if($about->vision_title || $about->vision_description)
-            <div class="mission-card">
-                <div class="mission-icon">
-                    <i class="{{ $about->vision_icon ?: 'fa-solid fa-eye' }}"></i>
+                    <div class="care-icon">
+                        <i class="bi bi-shield-plus"></i>
+                    </div>
+
+                    <div class="care-content">
+                        <h3>Hygiene Focused</h3>
+                        <p>
+                            Clean surroundings and patient-safe care practices help create confidence during visits.
+                        </p>
+                    </div>
+
+                    <span class="care-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
                 </div>
 
-                @if($about->vision_title)
-                    <h3>{{ $about->vision_title }}</h3>
-                @endif
+                <div class="care-card">
+                    <span class="care-number">03</span>
 
-                @if($about->vision_description)
-                    <p>{{ $about->vision_description }}</p>
-                @endif
-            </div>
-        @endif
+                    <div class="care-icon">
+                        <i class="bi bi-emoji-smile"></i>
+                    </div>
 
-        @if($about->approach_title || $about->approach_description)
-            <div class="mission-card">
-                <div class="mission-icon">
-                    <i class="{{ $about->approach_icon ?: 'fa-solid fa-hand-holding-heart' }}"></i>
+                    <div class="care-content">
+                        <h3>Comfort First</h3>
+                        <p>
+                            The treatment experience is kept gentle, calm and supportive for every age group.
+                        </p>
+                    </div>
+
+                    <span class="care-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
                 </div>
 
-                @if($about->approach_title)
-                    <h3>{{ $about->approach_title }}</h3>
-                @endif
-
-                @if($about->approach_description)
-                    <p>{{ $about->approach_description }}</p>
-                @endif
             </div>
-        @endif
 
-    </div>
-</section>
-<!-- MISSION VISION END -->
-
-@else
-
-<!-- ABOUT INTRO START -->
-<section class="about-intro-section">
-    <div class="container about-intro-grid">
-
-        <div class="about-intro-image">
-            <img src="{{ asset('assets/img/clinic.png') }}" alt="OM Dental Clinic">
-
-            <div class="about-experience-card">
-                <strong>10+</strong>
-                <span>Years of Smile Care</span>
-            </div>
         </div>
+    </section>
+    <!-- CARE APPROACH END -->
 
-        <div class="about-intro-content">
-            <span class="section-tag">Who We Are</span>
 
-            <h2>Dedicated to creating healthy and confident smiles.</h2>
+    <!-- MISSION VISION START -->
+    <section class="mission-section section-padding">
+        <div class="mission-bg-glow mission-glow-one"></div>
+        <div class="mission-bg-glow mission-glow-two"></div>
+        <div class="mission-pattern"></div>
 
-            <p>
-                OM Dental Clinic is focused on providing high-quality dental treatment
-                in a clean, comfortable and patient-friendly environment.
-            </p>
+        <div class="container">
+            <div class="mission-wrapper">
 
-            <p>
-                From dental consultation and teeth cleaning to root canal treatment,
-                implants, braces and smile designing, our clinic offers complete dental
-                solutions for families.
-            </p>
+                <!-- MISSION CONTENT START -->
+                <div class="mission-content">
+                    <span class="section-badge mission-badge">
+                        <i class="bi bi-bullseye"></i>
+                        Mission & Vision
+                    </span>
 
-            <div class="about-feature-list">
-                <div>
-                    <i class="fa-solid fa-user-doctor"></i>
-                    <span>Experienced Dentist</span>
+                    <h2>Building healthier smiles with a premium patient-first experience.</h2>
+
+                    <p>
+                        Dr. Richa Dental Care aims to provide reliable dental treatments with clean clinic
+                        standards, easy appointment access and a friendly consultation experience.
+                    </p>
+
+                    <div class="mission-highlight">
+                        <div class="mission-highlight-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+
+                        <div>
+                            <strong>Focused on trust and clarity.</strong>
+                            <span>
+                                Every treatment journey is planned with patient comfort, hygiene and clear guidance.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- MISSION CONTENT END -->
+
+
+                <!-- MISSION CARDS START -->
+                <div class="mission-cards">
+
+                    <div class="mission-card mission-card-primary">
+                        <span class="mission-card-number">01</span>
+
+                        <div class="mission-icon">
+                            <i class="bi bi-flag"></i>
+                        </div>
+
+                        <h3>Our Mission</h3>
+
+                        <p>
+                            To provide hygienic, comfortable and clear dental care for patients and families
+                            in Keshri Nagar, North Patel Nagar and nearby Patna areas.
+                        </p>
+
+                        <div class="mission-card-line"></div>
+                    </div>
+
+                    <div class="mission-card">
+                        <span class="mission-card-number">02</span>
+
+                        <div class="mission-icon">
+                            <i class="bi bi-eye"></i>
+                        </div>
+
+                        <h3>Our Vision</h3>
+
+                        <p>
+                            To become a trusted local dental clinic known for premium care, patient comfort
+                            and confident smile transformations.
+                        </p>
+
+                        <div class="mission-card-line"></div>
+                    </div>
+
+                </div>
+                <!-- MISSION CARDS END -->
+
+            </div>
+
+            <!-- VALUES STRIP START -->
+            <div class="mission-values-strip">
+
+                <div class="mission-value-item">
+                    <i class="bi bi-shield-check"></i>
+                    <div>
+                        <strong>Hygiene</strong>
+                        <span>Clean care environment</span>
+                    </div>
                 </div>
 
-                <div>
-                    <i class="fa-solid fa-shield-heart"></i>
-                    <span>Hygienic Setup</span>
+                <div class="mission-value-item">
+                    <i class="bi bi-chat-heart"></i>
+                    <div>
+                        <strong>Guidance</strong>
+                        <span>Clear treatment explanation</span>
+                    </div>
                 </div>
 
-                <div>
-                    <i class="fa-solid fa-microscope"></i>
-                    <span>Modern Equipment</span>
+                <div class="mission-value-item">
+                    <i class="bi bi-emoji-smile"></i>
+                    <div>
+                        <strong>Comfort</strong>
+                        <span>Calm patient experience</span>
+                    </div>
                 </div>
 
-                <div>
-                    <i class="fa-solid fa-heart-pulse"></i>
-                    <span>Patient Friendly Care</span>
+            </div>
+            <!-- VALUES STRIP END -->
+
+        </div>
+    </section>
+    <!-- MISSION VISION END -->
+
+
+    <!-- FACILITIES START -->
+    <section class="facility-section section-padding">
+        <div class="facility-bg-glow facility-glow-one"></div>
+        <div class="facility-bg-glow facility-glow-two"></div>
+        <div class="facility-pattern"></div>
+
+        <div class="container">
+
+            <div class="section-heading text-center facility-heading">
+                <span class="section-badge">
+                    <i class="bi bi-grid-1x2"></i>
+                    Clinic Facilities
+                </span>
+
+                <h2>Modern facilities for a clean dental wellness experience.</h2>
+
+                <p>
+                    Premium frontend cards can be updated with real clinic photos, equipment details and
+                    treatment room images when final assets are available.
+                </p>
+            </div>
+
+            <div class="facility-grid">
+
+                <div class="facility-card facility-card-featured">
+                    <span class="facility-number">01</span>
+
+                    <div class="facility-icon">
+                        <i class="bi bi-hospital"></i>
+                    </div>
+
+                    <div class="facility-content">
+                        <h3>Modern Treatment Room</h3>
+                        <p>
+                            Clean and comfortable treatment environment for routine and advanced dental care,
+                            planned with a calm clinic experience.
+                        </p>
+                    </div>
+
+                    <div class="facility-meta">
+                        <span><i class="bi bi-check2-circle"></i> Clean Setup</span>
+                        <span><i class="bi bi-check2-circle"></i> Comfort Care</span>
+                    </div>
+
+                    <div class="facility-image-box">
+                        <img src="assets/img/img4.png" alt="Modern dental treatment room">
+                        <div class="facility-image-badge">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Clean Treatment Space</span>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="facility-card">
+                    <span class="facility-number">02</span>
+
+                    <div class="facility-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <div class="facility-content">
+                        <h3>Hygiene Care</h3>
+                        <p>
+                            Patient-safe hygiene approach with clean surroundings and proper care guidance.
+                        </p>
+                    </div>
+
+                    <span class="facility-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
+                </div>
+
+                <div class="facility-card">
+                    <span class="facility-number">03</span>
+
+                    <div class="facility-icon">
+                        <i class="bi bi-camera"></i>
+                    </div>
+
+                    <div class="facility-content">
+                        <h3>Dental Imaging Support</h3>
+                        <p>
+                            Dental X-ray and diagnosis support area can be showcased with final clinic content.
+                        </p>
+                    </div>
+
+                    <span class="facility-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
+                </div>
+
+                <div class="facility-card">
+                    <span class="facility-number">04</span>
+
+                    <div class="facility-icon">
+                        <i class="bi bi-calendar2-check"></i>
+                    </div>
+
+                    <div class="facility-content">
+                        <h3>Appointment Support</h3>
+                        <p>
+                            Easy call, WhatsApp and frontend appointment form layout for quick patient enquiry.
+                        </p>
+                    </div>
+
+                    <span class="facility-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </span>
+                </div>
+
             </div>
 
-            <a href="{{ route('frontend.appointment') }}" class="btn btn-primary">
-                Book Appointment
-            </a>
         </div>
-
-    </div>
-</section>
-<!-- ABOUT INTRO END -->
+    </section>
+    <!-- FACILITIES END -->
 
 
-<!-- MISSION VISION START -->
-<section class="about-mission-section">
-    <div class="container mission-grid">
+    <!-- DOCTOR INTRO START -->
+    <section class="about-doctor-section section-padding">
+        <div class="about-doctor-glow doctor-glow-one"></div>
+        <div class="about-doctor-glow doctor-glow-two"></div>
+        <div class="about-doctor-pattern"></div>
 
-        <div class="mission-card">
-            <div class="mission-icon">
-                <i class="fa-solid fa-bullseye"></i>
+        <div class="container">
+            <div class="about-doctor-wrapper">
+
+                <!-- DOCTOR IMAGE START -->
+                <div class="about-doctor-visual">
+
+                    <div class="about-doctor-image">
+                        <img src="assets/img/img5.png" alt="Dr. Richa Dental Care dentist">
+
+                        <div class="doctor-image-overlay"></div>
+
+                        <div class="doctor-mini-badge">
+                            <span class="doctor-mini-icon">
+                                <i class="bi bi-person-badge"></i>
+                            </span>
+
+                            <span>
+                                <strong>Dr. Richa</strong>
+                                <small>Dental Care Specialist</small>
+                            </span>
+                        </div>
+
+                        <div class="doctor-top-badge">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Comfort-focused care</span>
+                        </div>
+                    </div>
+
+                    <div class="doctor-quick-stats">
+                        <div>
+                            <i class="bi bi-heart-pulse"></i>
+                            <strong>Modern</strong>
+                            <span>Dental Care</span>
+                        </div>
+
+                        <div>
+                            <i class="bi bi-person-heart"></i>
+                            <strong>Patient</strong>
+                            <span>First Approach</span>
+                        </div>
+
+                        <div>
+                            <i class="bi bi-stars"></i>
+                            <strong>Clean</strong>
+                            <span>Clinic Experience</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- DOCTOR IMAGE END -->
+
+
+                <!-- DOCTOR CONTENT START -->
+                <div class="about-doctor-content">
+
+                    <span class="section-badge">
+                        <i class="bi bi-person-heart"></i>
+                        Meet The Doctor
+                    </span>
+
+                    <h2>Meet Dr. Richa</h2>
+
+                    <p>
+                        Doctor qualification, experience and specialization details can be updated here
+                        after receiving the final profile from the clinic.
+                    </p>
+
+                    <div class="doctor-note-card">
+                        <div class="doctor-note-icon">
+                            <i class="bi bi-chat-heart"></i>
+                        </div>
+
+                        <div>
+                            <h3>Gentle guidance for confident dental decisions.</h3>
+                            <p>
+                                Focused on clean treatment planning, patient comfort and clear explanation
+                                before every dental procedure.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="doctor-chip-list">
+                        <span><i class="bi bi-check2-circle"></i> Dental Consultation</span>
+                        <span><i class="bi bi-check2-circle"></i> Root Canal Treatment</span>
+                        <span><i class="bi bi-check2-circle"></i> Cosmetic Dentistry</span>
+                    </div>
+
+                    <div class="about-doctor-actions">
+                        <a href="dentist-profile.html" class="about-page-btn">
+                            View Doctor Profile
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                        <a href="appointment.html" class="about-outline-btn">
+                            <i class="bi bi-calendar2-check"></i>
+                            Book Appointment
+                        </a>
+                    </div>
+
+                </div>
+                <!-- DOCTOR CONTENT END -->
+
             </div>
-
-            <h3>Our Mission</h3>
-
-            <p>
-                To provide safe, comfortable and affordable dental care with modern
-                techniques and honest guidance.
-            </p>
         </div>
+    </section>
+    <!-- DOCTOR INTRO END -->
 
-        <div class="mission-card">
-            <div class="mission-icon">
-                <i class="fa-solid fa-eye"></i>
+
+    <!-- ABOUT CTA START -->
+    <section class="about-cta-section">
+        <div class="about-cta-glow about-cta-glow-one"></div>
+        <div class="about-cta-glow about-cta-glow-two"></div>
+        <div class="about-cta-pattern"></div>
+
+        <div class="container">
+            <div class="about-cta-card">
+
+                <div class="about-cta-content">
+                    <span class="section-badge about-cta-badge">
+                        <i class="bi bi-calendar2-check"></i>
+                        Book Your Visit
+                    </span>
+
+                    <h2>Need dental care near Baba Chowk, Keshri Nagar?</h2>
+
+                    <p>
+                        Call or book your appointment with Dr. Richa Dental Care for a clean,
+                        comfortable and patient-friendly dental visit.
+                    </p>
+
+                    <div class="about-cta-points">
+                        <span>
+                            <i class="bi bi-check2-circle"></i>
+                            Easy Appointment
+                        </span>
+
+                        <span>
+                            <i class="bi bi-check2-circle"></i>
+                            Patient Friendly
+                        </span>
+                    </div>
+                </div>
+
+                <div class="about-cta-action-card">
+                    <div class="about-cta-icon">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+
+                    <h3>Ready for a comfortable dental visit?</h3>
+
+                    <p>
+                        Connect with the clinic and get quick appointment support.
+                    </p>
+
+                    <div class="about-cta-actions">
+                        <a href="appointment.html" class="about-page-btn">
+                            Book Appointment
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                        <a href="tel:+919608701058" class="about-outline-btn">
+                            <i class="bi bi-telephone-fill"></i>
+                            Call Clinic
+                        </a>
+                    </div>
+                </div>
+
             </div>
-
-            <h3>Our Vision</h3>
-
-            <p>
-                To become a trusted dental clinic known for ethical treatment,
-                advanced care and long-term patient relationships.
-            </p>
         </div>
-
-        <div class="mission-card">
-            <div class="mission-icon">
-                <i class="fa-solid fa-hand-holding-heart"></i>
-            </div>
-
-            <h3>Care Approach</h3>
-
-            <p>
-                Every patient receives personal attention, proper explanation and a
-                treatment plan based on comfort and need.
-            </p>
-        </div>
-
-    </div>
-</section>
-<!-- MISSION VISION END -->
-
-@endif
-
-
-  <!-- FACILITIES START -->
-  <section class="about-facility-section">
-    <div class="container">
-
-      <div class="section-heading center">
-        <span class="section-tag">Clinic Facilities</span>
-        <h2>Designed for safe and comfortable dental visits.</h2>
-        <p>
-          Our clinic is planned to make every patient feel relaxed, informed and
-          confident before treatment.
-        </p>
-      </div>
-
-      <div class="facility-grid">
-
-        <div class="facility-card">
-          <i class="fa-solid fa-chair"></i>
-          <h3>Comfortable Setup</h3>
-          <p>Modern dental chair and relaxing treatment environment.</p>
-        </div>
-
-        <div class="facility-card">
-          <i class="fa-solid fa-pump-medical"></i>
-          <h3>Sterilized Instruments</h3>
-          <p>Proper cleaning and sterilization before every treatment.</p>
-        </div>
-
-        <div class="facility-card">
-          <i class="fa-solid fa-x-ray"></i>
-          <h3>Digital Diagnosis</h3>
-          <p>Advanced diagnostic support for accurate treatment planning.</p>
-        </div>
-
-        <div class="facility-card">
-          <i class="fa-solid fa-children"></i>
-          <h3>Family Dental Care</h3>
-          <p>Gentle dental treatment for adults and children.</p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-  <!-- FACILITIES END -->
-
-
-  <!-- HYGIENE START -->
-  <section class="hygiene-section">
-    <div class="container hygiene-grid">
-
-      <div class="hygiene-content">
-        <span class="section-tag">Hygiene & Safety</span>
-        <h2>Clean clinic, safe process and trusted dental care.</h2>
-
-        <p>
-          Hygiene is one of the most important parts of dental treatment.
-          At OM Dental Clinic, we follow clean treatment protocols, instrument
-          sterilization and surface disinfection for patient safety.
-        </p>
-
-        <ul class="hygiene-list">
-          <li><i class="fa-solid fa-check"></i> Clean and well-maintained clinic environment</li>
-          <li><i class="fa-solid fa-check"></i> Sterilized dental instruments</li>
-          <li><i class="fa-solid fa-check"></i> Modern treatment equipment</li>
-          <li><i class="fa-solid fa-check"></i> Comfortable patient consultation</li>
-        </ul>
-      </div>
-
-      <div class="hygiene-image">
-        <img src="assets/img/dentist-clean.png" alt="Dental Hygiene and Technology">
-      </div>
-
-    </div>
-  </section>
-  <!-- HYGIENE END -->
-
-
-  <!-- STATS START -->
-  <section class="about-stats-section">
-    <div class="container about-stats-grid">
-
-      <div class="about-stat">
-        <strong>10+</strong>
-        <span>Years Experience</span>
-      </div>
-
-      <div class="about-stat">
-        <strong>5k+</strong>
-        <span>Happy Patients</span>
-      </div>
-
-      <div class="about-stat">
-        <strong>15+</strong>
-        <span>Dental Services</span>
-      </div>
-
-      <div class="about-stat">
-        <strong>100%</strong>
-        <span>Hygiene Focused</span>
-      </div>
-
-    </div>
-  </section>
-  <!-- STATS END -->
-
-
-  <!-- CTA START -->
-  <section class="final-cta">
-    <div class="container final-cta-box">
-      <div>
-        <span>Ready for a healthier smile?</span>
-        <h2>Book your dental appointment online today.</h2>
-      </div>
-
-      <div class="final-actions">
-        <a href="{{ route('frontend.appointment') }}" class="btn btn-light">Book Appointment</a>
-        <a href="{{ $frontendWhatsappAppointmentLink }}" target="_blank" class="btn btn-dark">WhatsApp Now</a>
-      </div>
-    </div>
-  </section>
-  <!-- CTA END -->
+    </section>
+    <!-- ABOUT CTA END -->
 
 @endsection

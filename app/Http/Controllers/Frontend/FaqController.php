@@ -9,9 +9,13 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $faqs = Faq::where('status', 1)
-            ->orderBy('sort_order', 'asc')
-            ->get();
+        try {
+            $faqs = Faq::where('status', 1)
+                ->orderBy('sort_order', 'asc')
+                ->get();
+        } catch (\Throwable $exception) {
+            $faqs = collect();
+        }
 
         return view('frontend.faqs', compact('faqs'));
     }

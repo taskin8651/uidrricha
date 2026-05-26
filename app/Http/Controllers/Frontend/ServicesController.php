@@ -9,13 +9,17 @@ class ServicesController extends Controller
 {
     public function index()
     {
-        $serviceSections = ServiceSection::with([
-                'activeItems',
-                'media',
-            ])
-            ->where('status', 1)
-            ->orderBy('sort_order', 'asc')
-            ->get();
+        try {
+            $serviceSections = ServiceSection::with([
+                    'activeItems',
+                    'media',
+                ])
+                ->where('status', 1)
+                ->orderBy('sort_order', 'asc')
+                ->get();
+        } catch (\Throwable $exception) {
+            $serviceSections = collect();
+        }
 
         return view('frontend.services', compact('serviceSections'));
     }
