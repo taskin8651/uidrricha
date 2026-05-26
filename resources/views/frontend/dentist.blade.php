@@ -2,6 +2,41 @@
 @extends('frontend.master')
 @section('content')
 
+@php
+    $doctor = $dentistProfileSection ?? null;
+    $siteName = $frontendSiteName ?? 'Dr. Richa Dental Care';
+    $clinicAddress = $frontendClinicAddress ?? '12, Road Number 17, near Baba Chowk, Bank Colony, Keshri Nagar, Patna, Bihar 800024';
+    $clinicHours = $frontendClinicHours ?? 'Mon - Sat, 10 AM - 8:30 PM';
+    $contactNumber = $frontendContactNumber ?? '+91 96087 01058';
+    $callLink = $frontendCallLink ?? 'tel:+919608701058';
+    $doctorName = $doctor?->doctor_name ?: 'Dr. Richa';
+    $doctorDesignation = $doctor?->designation ?: 'Dental Care Specialist';
+    $profileTag = $doctor?->profile_tag ?: 'Dentist Profile';
+    $doctorDescription = $doctor?->description ?: 'Doctor qualification, experience and specialization details can be updated here after receiving the final profile from the clinic. This section is designed to present the doctor as a calm, trusted and patient-friendly dental professional.';
+    $doctorImage = $doctor?->getFirstMediaUrl('dentist_profile_image') ?: asset('assets/img/img6.png');
+    $buttonOneText = $doctor?->button_1_text ?: 'Book Appointment';
+    $buttonOneUrl = $doctor?->button_1_url ?: route('frontend.appointment');
+    $buttonTwoText = $doctor?->button_2_text ?: 'Call Clinic';
+    $buttonTwoUrl = $doctor?->button_2_url ?: $callLink;
+    $quickStats = [
+        [
+            'icon' => $doctor?->quick_stat_1_icon ?: 'bi bi-heart-pulse',
+            'title' => $doctor?->quick_stat_1_title ?: 'Modern',
+            'text' => $doctor?->quick_stat_1_text ?: 'Dental Care',
+        ],
+        [
+            'icon' => $doctor?->quick_stat_2_icon ?: 'bi bi-person-heart',
+            'title' => $doctor?->quick_stat_2_title ?: 'Patient',
+            'text' => $doctor?->quick_stat_2_text ?: 'First Approach',
+        ],
+        [
+            'icon' => $doctor?->quick_stat_3_icon ?: 'bi bi-stars',
+            'title' => $doctor?->quick_stat_3_title ?: 'Clean',
+            'text' => $doctor?->quick_stat_3_text ?: 'Clinic Experience',
+        ],
+    ];
+@endphp
+
 
  <!-- DENTIST BREADCRUMB HERO START -->
     <section class="dentist-breadcrumb-hero">
@@ -14,25 +49,25 @@
 
                 <span class="section-badge">
                     <i class="bi bi-person-badge"></i>
-                    Dentist Profile
+                    {{ $profileTag }}
                 </span>
 
-                <h1>Meet Dr. Richa</h1>
+                <h1>Meet {{ $doctorName }}</h1>
 
                 <p>
-                    Learn more about Dr. Richa Dental Care, treatment approach, dental focus areas
+                    Learn more about {{ $siteName }}, treatment approach, dental focus areas
                     and patient-friendly care experience in Keshri Nagar, Patna.
                 </p>
 
                 <nav class="breadcrumb-nav" aria-label="breadcrumb">
-                    <a href="index.html">
+                    <a href="{{ route('frontend.home') }}">
                         <i class="bi bi-house-heart"></i>
                         Home
                     </a>
 
                     <i class="bi bi-chevron-right"></i>
 
-                    <span>Dentist Profile</span>
+                    <span>{{ $profileTag }}</span>
                 </nav>
 
             </div>
@@ -54,7 +89,7 @@
                 <div class="dentist-profile-visual reveal-up reveal-delay-1">
 
                     <div class="dentist-image-card premium-card">
-                        <img src="assets/img/img6.png" alt="Dr. Richa Dental Care dentist">
+                        <img src="{{ $doctorImage }}" alt="{{ $doctorName }}">
 
                         <div class="dentist-image-overlay"></div>
 
@@ -64,8 +99,8 @@
                             </span>
 
                             <div>
-                                <strong>Dr. Richa</strong>
-                                <small>Dental Care Specialist</small>
+                                <strong>{{ $doctorName }}</strong>
+                                <small>{{ $doctorDesignation }}</small>
                             </div>
                         </div>
 
@@ -76,23 +111,13 @@
                     </div>
 
                     <div class="dentist-quick-stats premium-card">
-                        <div>
-                            <i class="bi bi-heart-pulse"></i>
-                            <strong>Modern</strong>
-                            <span>Dental Care</span>
-                        </div>
-
-                        <div>
-                            <i class="bi bi-person-heart"></i>
-                            <strong>Patient</strong>
-                            <span>First Approach</span>
-                        </div>
-
-                        <div>
-                            <i class="bi bi-stars"></i>
-                            <strong>Clean</strong>
-                            <span>Clinic Experience</span>
-                        </div>
+                        @foreach($quickStats as $quickStat)
+                            <div>
+                                <i class="{{ $quickStat['icon'] }}"></i>
+                                <strong>{{ $quickStat['title'] }}</strong>
+                                <span>{{ $quickStat['text'] }}</span>
+                            </div>
+                        @endforeach
                     </div>
 
                 </div>
@@ -107,12 +132,10 @@
                         Doctor Introduction
                     </span>
 
-                    <h2>Gentle guidance for confident dental decisions.</h2>
+                    <h2>{{ $doctor?->availability_title ?: 'Gentle guidance for confident dental decisions.' }}</h2>
 
                     <p>
-                        Doctor qualification, experience and specialization details can be updated here
-                        after receiving the final profile from the clinic. This section is designed to
-                        present Dr. Richa as a calm, trusted and patient-friendly dental professional.
+                        {{ $doctorDescription }}
                     </p>
 
                     <div class="dentist-note-card premium-card premium-hover">
@@ -123,27 +146,26 @@
                         <div>
                             <h3>Clear consultation before every treatment.</h3>
                             <p>
-                                The focus is on clean treatment planning, patient comfort and simple explanation
-                                before dental procedures.
+                                {{ $doctor?->availability_note ?: 'The focus is on clean treatment planning, patient comfort and simple explanation before dental procedures.' }}
                             </p>
                         </div>
                     </div>
 
                     <div class="doctor-chip-list">
-                        <span><i class="bi bi-check2-circle"></i> Dental Consultation</span>
-                        <span><i class="bi bi-check2-circle"></i> Root Canal Treatment</span>
-                        <span><i class="bi bi-check2-circle"></i> Cosmetic Dentistry</span>
+                        <span><i class="bi bi-check2-circle"></i> {{ $doctor?->qualification_value ?: 'Dental Consultation' }}</span>
+                        <span><i class="bi bi-check2-circle"></i> {{ $doctor?->specialization_value ?: 'Root Canal Treatment' }}</span>
+                        <span><i class="bi bi-check2-circle"></i> {{ $doctor?->experience_text ?: 'Cosmetic Dentistry' }}</span>
                     </div>
 
                     <div class="dentist-profile-actions">
-                        <a href="appointment.html" class="dentist-primary-btn">
-                            Book Appointment
+                        <a href="{{ $buttonOneUrl }}" class="dentist-primary-btn">
+                            {{ $buttonOneText }}
                             <i class="bi bi-arrow-right"></i>
                         </a>
 
-                        <a href="tel:+919608701058" class="dentist-outline-btn">
+                        <a href="{{ $buttonTwoUrl }}" class="dentist-outline-btn">
                             <i class="bi bi-telephone-fill"></i>
-                            Call Clinic
+                            {{ $buttonTwoText }}
                         </a>
                     </div>
 
@@ -191,22 +213,22 @@
                     <div class="profile-info-list">
                         <div class="profile-info-item">
                             <small>Doctor Name</small>
-                            <strong>Dr. Richa</strong>
+                            <strong>{{ $doctorName }}</strong>
                         </div>
 
                         <div class="profile-info-item">
                             <small>Clinic Name</small>
-                            <strong>Dr. Richa Dental Care</strong>
+                            <strong>{{ $siteName }}</strong>
                         </div>
 
                         <div class="profile-info-item">
                             <small>Location</small>
-                            <strong>Keshri Nagar, Patna</strong>
+                            <strong>{{ \Illuminate\Support\Str::limit($clinicAddress, 36) }}</strong>
                         </div>
 
                         <div class="profile-info-item">
                             <small>Clinic Hours</small>
-                            <strong>Mon - Sat, 10 AM - 8:30 PM</strong>
+                            <strong>{{ $clinicHours }}</strong>
                         </div>
                     </div>
                 </div>
@@ -219,7 +241,7 @@
                     <h3>Patient-first dental care approach.</h3>
 
                     <p>
-                        Dr. Richa Dental Care focuses on clear explanation, clean treatment planning,
+                        {{ $siteName }} focuses on clear explanation, clean treatment planning,
                         patient comfort and a calm dental visit experience.
                     </p>
 
@@ -345,7 +367,7 @@
                     <h2>Every visit is planned around comfort, hygiene and clarity.</h2>
 
                     <p>
-                        Dr. Richa Dental Care focuses on a calm dental journey where patients understand
+                        {{ $siteName }} focuses on a calm dental journey where patients understand
                         the treatment process, feel comfortable and get proper care guidance.
                     </p>
 
@@ -406,23 +428,23 @@
                         Book Your Visit
                     </span>
 
-                    <h2>Want to consult Dr. Richa for your dental concern?</h2>
+                    <h2>Want to consult {{ $doctorName }} for your dental concern?</h2>
 
                     <p>
-                        Call or book your appointment with Dr. Richa Dental Care for a clean,
+                        Call or book your appointment with {{ $siteName }} for a clean,
                         comfortable and patient-friendly dental visit.
                     </p>
                 </div>
 
                 <div class="dentist-cta-actions">
-                    <a href="appointment.html" class="dentist-primary-btn">
-                        Book Appointment
+                    <a href="{{ $buttonOneUrl }}" class="dentist-primary-btn">
+                        {{ $buttonOneText }}
                         <i class="bi bi-arrow-right"></i>
                     </a>
 
-                    <a href="tel:+919608701058" class="dentist-outline-btn">
+                    <a href="{{ $buttonTwoUrl }}" class="dentist-outline-btn">
                         <i class="bi bi-telephone-fill"></i>
-                        Call Clinic
+                        {{ $buttonTwoText }}
                     </a>
                 </div>
 

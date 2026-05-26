@@ -23,6 +23,16 @@ class DentistProfileSection extends Model implements HasMedia
         'experience_number',
         'experience_text',
 
+        'quick_stat_1_icon',
+        'quick_stat_1_title',
+        'quick_stat_1_text',
+        'quick_stat_2_icon',
+        'quick_stat_2_title',
+        'quick_stat_2_text',
+        'quick_stat_3_icon',
+        'quick_stat_3_title',
+        'quick_stat_3_text',
+
         'qualification_icon',
         'qualification_label',
         'qualification_value',

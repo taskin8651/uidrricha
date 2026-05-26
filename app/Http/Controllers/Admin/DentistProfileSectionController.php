@@ -55,6 +55,18 @@ class DentistProfileSectionController extends Controller
             'experience_number' => '10+',
             'experience_text' => 'Years Experience',
 
+            'quick_stat_1_icon' => 'bi bi-heart-pulse',
+            'quick_stat_1_title' => 'Modern',
+            'quick_stat_1_text' => 'Dental Care',
+
+            'quick_stat_2_icon' => 'bi bi-person-heart',
+            'quick_stat_2_title' => 'Patient',
+            'quick_stat_2_text' => 'First Approach',
+
+            'quick_stat_3_icon' => 'bi bi-stars',
+            'quick_stat_3_title' => 'Clean',
+            'quick_stat_3_text' => 'Clinic Experience',
+
             'qualification_icon' => 'fa-solid fa-graduation-cap',
             'qualification_label' => 'Qualification',
             'qualification_value' => 'BDS / MDS',

@@ -296,6 +296,62 @@
 
     </div>
 
+    {{-- QUICK STATS --}}
+    <div class="form-card mt-4">
+        <div class="form-card-header">
+            <div class="form-card-icon">
+                <i class="fas fa-chart-simple"></i>
+            </div>
+
+            <div>
+                <p class="form-card-title">Quick Stats</p>
+                <p class="form-card-subtitle">Three small stats shown below dentist image</p>
+            </div>
+        </div>
+
+        <div class="form-card-body">
+            @for($i = 1; $i <= 3; $i++)
+                <div class="admin-form-grid mini-grid">
+                    <div class="field-group">
+                        <label class="field-label">Stat {{ $i }} Icon</label>
+                        <div class="input-icon-wrap">
+                            <i class="fas fa-icons icon"></i>
+                            <input type="text"
+                                   name="quick_stat_{{ $i }}_icon"
+                                   value="{{ old('quick_stat_' . $i . '_icon', $dentistProfileSection->{'quick_stat_' . $i . '_icon'}) }}"
+                                   placeholder="bi bi-heart-pulse"
+                                   class="field-input">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Stat {{ $i }} Title</label>
+                        <div class="input-icon-wrap">
+                            <i class="fas fa-heading icon"></i>
+                            <input type="text"
+                                   name="quick_stat_{{ $i }}_title"
+                                   value="{{ old('quick_stat_' . $i . '_title', $dentistProfileSection->{'quick_stat_' . $i . '_title'}) }}"
+                                   placeholder="Modern"
+                                   class="field-input">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Stat {{ $i }} Text</label>
+                        <div class="input-icon-wrap">
+                            <i class="fas fa-align-left icon"></i>
+                            <input type="text"
+                                   name="quick_stat_{{ $i }}_text"
+                                   value="{{ old('quick_stat_' . $i . '_text', $dentistProfileSection->{'quick_stat_' . $i . '_text'}) }}"
+                                   placeholder="Dental Care"
+                                   class="field-input">
+                        </div>
+                    </div>
+                </div>
+            @endfor
+        </div>
+    </div>
+
     {{-- PROFILE INFO BOXES --}}
     <div class="admin-form-grid mt-4">
 

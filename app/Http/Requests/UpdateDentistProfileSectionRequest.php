@@ -26,6 +26,16 @@ class UpdateDentistProfileSectionRequest extends FormRequest
             'experience_number' => ['nullable', 'string', 'max:255'],
             'experience_text' => ['nullable', 'string', 'max:255'],
 
+            'quick_stat_1_icon' => ['nullable', 'string', 'max:255'],
+            'quick_stat_1_title' => ['nullable', 'string', 'max:255'],
+            'quick_stat_1_text' => ['nullable', 'string', 'max:255'],
+            'quick_stat_2_icon' => ['nullable', 'string', 'max:255'],
+            'quick_stat_2_title' => ['nullable', 'string', 'max:255'],
+            'quick_stat_2_text' => ['nullable', 'string', 'max:255'],
+            'quick_stat_3_icon' => ['nullable', 'string', 'max:255'],
+            'quick_stat_3_title' => ['nullable', 'string', 'max:255'],
+            'quick_stat_3_text' => ['nullable', 'string', 'max:255'],
+
             'qualification_icon' => ['nullable', 'string', 'max:255'],
             'qualification_label' => ['nullable', 'string', 'max:255'],
             'qualification_value' => ['nullable', 'string', 'max:255'],

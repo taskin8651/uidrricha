@@ -19,6 +19,16 @@ class CreateDentistProfileSectionsTable extends Migration
             $table->string('experience_number')->nullable();
             $table->string('experience_text')->nullable();
 
+            $table->string('quick_stat_1_icon')->nullable();
+            $table->string('quick_stat_1_title')->nullable();
+            $table->string('quick_stat_1_text')->nullable();
+            $table->string('quick_stat_2_icon')->nullable();
+            $table->string('quick_stat_2_title')->nullable();
+            $table->string('quick_stat_2_text')->nullable();
+            $table->string('quick_stat_3_icon')->nullable();
+            $table->string('quick_stat_3_title')->nullable();
+            $table->string('quick_stat_3_text')->nullable();
+
             $table->string('qualification_icon')->nullable();
             $table->string('qualification_label')->nullable();
             $table->string('qualification_value')->nullable();
