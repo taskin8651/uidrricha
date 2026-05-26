@@ -23,4 +23,24 @@ class ServicesController extends Controller
 
         return view('frontend.services', compact('serviceSections'));
     }
+
+    public function show(string $slug)
+    {
+        try {
+            $serviceSection = ServiceSection::with(['activeItems', 'media'])
+                ->where('status', 1)
+                ->where('slug', $slug)
+                ->firstOrFail();
+
+            $relatedServices = ServiceSection::where('status', 1)
+                ->where('id', '!=', $serviceSection->id)
+                ->orderBy('sort_order', 'asc')
+                ->take(4)
+                ->get();
+        } catch (\Throwable $exception) {
+            abort(404);
+        }
+
+        return view('frontend.service-detail', compact('serviceSection', 'relatedServices'));
+    }
 }

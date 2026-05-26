@@ -10,6 +10,7 @@ use App\Models\ServiceSection;
 use App\Models\ServiceSectionItem;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class ServiceSectionController extends Controller
@@ -36,6 +37,7 @@ class ServiceSectionController extends Controller
     {
         $data = $request->except(['image', 'items']);
         $data['status'] = $request->has('status') ? 1 : 0;
+        $data['slug'] = $this->uniqueSlug($data['slug'] ?? $data['title']);
 
         $serviceSection = ServiceSection::create($data);
 
@@ -74,6 +76,7 @@ class ServiceSectionController extends Controller
     {
         $data = $request->except(['image', 'items']);
         $data['status'] = $request->has('status') ? 1 : 0;
+        $data['slug'] = $this->uniqueSlug($data['slug'] ?? $data['title'], $serviceSection->id);
 
         $serviceSection->update($data);
 
@@ -123,5 +126,24 @@ class ServiceSectionController extends Controller
                 'status' => isset($item['status']) ? 1 : 0,
             ]);
         }
+    }
+
+    private function uniqueSlug(?string $value, ?int $ignoreId = null): string
+    {
+        $baseSlug = Str::slug($value ?: 'service');
+        $slug = $baseSlug;
+        $counter = 2;
+
+        while (
+            ServiceSection::withTrashed()
+                ->where('slug', $slug)
+                ->when($ignoreId, fn ($query) => $query->where('id', '!=', $ignoreId))
+                ->exists()
+        ) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 }

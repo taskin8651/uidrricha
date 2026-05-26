@@ -18,8 +18,11 @@ class UpdateServiceSectionRequest extends FormRequest
     public function rules()
     {
         return [
+            'slug' => ['nullable', 'string', 'max:255'],
+            'card_icon' => ['nullable', 'string', 'max:255'],
             'tag' => ['nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
+            'short_description' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
 
             'button_1_text' => ['nullable', 'string', 'max:255'],

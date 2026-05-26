@@ -82,6 +82,23 @@
                 </div>
 
                 <div class="field-group">
+                    <label class="field-label" for="card_icon">
+                        Card Icon
+                    </label>
+
+                    <div class="input-icon-wrap">
+                        <i class="fas fa-icons icon"></i>
+
+                        <input type="text"
+                               name="card_icon"
+                               id="card_icon"
+                               value="{{ old('card_icon', $serviceSection->card_icon ?: 'bi bi-clipboard2-pulse') }}"
+                               placeholder="bi bi-clipboard2-pulse"
+                               class="field-input {{ $errors->has('card_icon') ? 'error' : '' }}">
+                    </div>
+                </div>
+
+                <div class="field-group">
                     <label class="field-label" for="title">
                         Title <span class="req">*</span>
                     </label>
@@ -107,8 +124,20 @@
                 </div>
 
                 <div class="field-group">
+                    <label class="field-label" for="short_description">
+                        Short Description
+                    </label>
+
+                    <textarea name="short_description"
+                              id="short_description"
+                              rows="3"
+                              placeholder="Short text shown on service card..."
+                              class="field-textarea {{ $errors->has('short_description') ? 'error' : '' }}">{{ old('short_description', $serviceSection->short_description) }}</textarea>
+                </div>
+
+                <div class="field-group">
                     <label class="field-label" for="description">
-                        Description
+                        Detail Description
                     </label>
 
                     <textarea name="description"
@@ -553,6 +582,10 @@
 @section('scripts')
 @parent
 <script>
+    if (document.querySelector('#description')) {
+        ClassicEditor.create(document.querySelector('#description')).catch(error => console.error(error));
+    }
+
     let benefitIndex = {{ count($items) }};
 
     function addBenefitRow() {

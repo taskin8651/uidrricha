@@ -15,8 +15,11 @@ class ServiceSection extends Model implements HasMedia
     public $table = 'service_sections';
 
     protected $fillable = [
+        'slug',
+        'card_icon',
         'tag',
         'title',
+        'short_description',
         'description',
         'button_1_text',
         'button_1_url',

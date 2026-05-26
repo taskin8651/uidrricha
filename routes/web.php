@@ -102,6 +102,7 @@ Route::get('/index.html', [IndexController::class, 'index']);
 
 Route::get('/services', [ServicesController::class, 'index'])->name('frontend.services.index');
 Route::get('/services.html', [ServicesController::class, 'index']);
+Route::get('/services/{slug}', [ServicesController::class, 'show'])->name('frontend.services.show');
 
 Route::get('/about', [AboutController::class, 'index'])->name('frontend.about');
 Route::get('/about.html', [AboutController::class, 'index']);

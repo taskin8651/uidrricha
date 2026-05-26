@@ -11,8 +11,11 @@ class CreateServiceSectionsTable extends Migration
         Schema::create('service_sections', function (Blueprint $table) {
             $table->id();
 
+            $table->string('slug')->nullable()->unique();
+            $table->string('card_icon')->nullable();
             $table->string('tag')->nullable();
             $table->string('title')->nullable();
+            $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
 
             $table->string('button_1_text')->nullable();
