@@ -29,6 +29,7 @@ class UpdateWebsiteSettingRequest extends FormRequest
             'contact_number'   => ['nullable', 'string', 'max:30'],
             'whatsapp_number'  => ['nullable', 'string', 'max:30'],
             'clinic_address'   => ['nullable', 'string'],
+            'clinic_hours'     => ['nullable', 'string', 'max:255'],
             'map_embed_url'    => ['nullable', 'string'],
             'map_direction_url' => ['nullable', 'string', 'max:2000'],
             'site_logo'        => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],

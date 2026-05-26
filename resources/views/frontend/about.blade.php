@@ -1,6 +1,25 @@
 @extends('frontend.master')
 @section('content')
 
+@php
+    $about = $aboutPageSection ?? null;
+    $doctor = $dentistProfileSection ?? null;
+    $aboutImage = $about?->getFirstMediaUrl('about_intro_image') ?: asset('assets/img/img2.png');
+    $doctorImage = $doctor?->getFirstMediaUrl('dentist_profile_image') ?: asset('assets/img/img5.png');
+    $siteName = $frontendSiteName ?? 'Dr. Richa Dental Care';
+    $clinicAddress = $frontendClinicAddress ?? '12, Road Number 17, near Baba Chowk, Bank Colony, Keshri Nagar, Patna, Bihar 800024';
+    $clinicHours = $frontendClinicHours ?? 'Mon - Sat, 10 AM - 8:30 PM';
+    $contactNumber = $frontendContactNumber ?? '+91 96087 01058';
+    $callLink = $frontendCallLink ?? 'tel:+919608701058';
+    $introTag = $about->intro_tag ?? 'Clinic Introduction';
+    $introTitle = $about->intro_title ?? 'Soft, clean and comfortable dental care experience.';
+    $introDescription = $about->intro_description_1 ?? 'Dr. Richa Dental Care provides professional dental treatments with a focus on hygiene, comfort and clear patient guidance.';
+    $introDescriptionTwo = $about->intro_description_2 ?? 'The clinic is located near Baba Chowk, Bank Colony, Keshri Nagar, Patna and is easily accessible from North Patel Nagar and Rajeev Nagar.';
+    $doctorName = $doctor->doctor_name ?? 'Dr. Richa';
+    $doctorDesignation = $doctor->designation ?? 'Dental Care Specialist';
+    $doctorDescription = $doctor->description ?? 'Focused on clean treatment planning, patient comfort and clear explanation before every dental procedure.';
+@endphp
+
 
     <!-- ABOUT BREADCRUMB HERO START -->
     <section class="about-page-hero">
@@ -13,7 +32,7 @@
                 <div class="about-hero-content">
                     <span class="section-badge">
                         <i class="bi bi-hospital"></i>
-                        About Dr. Richa Dental Care
+                        About {{ $siteName }}
                     </span>
 
                     <h1>
@@ -22,12 +41,12 @@
                     </h1>
 
                     <p>
-                        Dr. Richa Dental Care is designed to provide a calm, hygienic and patient-friendly
+                        {{ $siteName }} is designed to provide a calm, hygienic and patient-friendly
                         dental experience near Baba Chowk, Bank Colony, Keshri Nagar, Patna.
                     </p>
 
                     <nav class="about-breadcrumb" aria-label="breadcrumb">
-                        <a href="index.html">Home</a>
+                        <a href="{{ route('frontend.home') }}">Home</a>
                         <i class="bi bi-chevron-right"></i>
                         <span>About Clinic</span>
                     </nav>
@@ -38,7 +57,7 @@
                         <i class="bi bi-geo-alt-fill"></i>
                         <div>
                             <small>Clinic Location</small>
-                            <strong>Near Baba Chowk, Keshri Nagar</strong>
+                            <strong>{{ \Illuminate\Support\Str::limit($clinicAddress, 36) }}</strong>
                         </div>
                     </div>
 
@@ -46,7 +65,7 @@
                         <i class="bi bi-clock-fill"></i>
                         <div>
                             <small>Clinic Hours</small>
-                            <strong>Mon - Sat, 10 AM - 8:30 PM</strong>
+                            <strong>{{ $clinicHours }}</strong>
                         </div>
                     </div>
 
@@ -54,7 +73,7 @@
                         <i class="bi bi-telephone-fill"></i>
                         <div>
                             <small>Call Clinic</small>
-                            <strong>+91 96087 01058</strong>
+                            <strong>{{ $contactNumber }}</strong>
                         </div>
                     </div>
                 </div>
@@ -78,7 +97,7 @@
                 <div class="about-intro-visual">
 
                     <div class="about-main-image">
-                        <img src="assets/img/img2.png" alt="Modern dental clinic in Keshri Nagar Patna">
+                        <img src="{{ $aboutImage }}" alt="{{ $introTitle }}">
 
                         <div class="about-image-label">
                             <span class="about-image-label-icon">
@@ -132,15 +151,16 @@
 
                     <span class="section-badge">
                         <i class="bi bi-stars"></i>
-                        Clinic Introduction
+                        {{ $introTag }}
                     </span>
 
-                    <h2>Soft, clean and comfortable dental care experience.</h2>
+                    <h2>{{ $introTitle }}</h2>
 
                     <p>
-                        Dr. Richa Dental Care provides professional dental treatments with a focus on hygiene,
-                        comfort and clear patient guidance. The clinic is located near Baba Chowk, Bank Colony,
-                        Keshri Nagar, Patna and is easily accessible from North Patel Nagar and Rajeev Nagar.
+                        {{ $introDescription }}
+                        @if($introDescriptionTwo)
+                            {{ $introDescriptionTwo }}
+                        @endif
                     </p>
 
                     <div class="about-note-card">
@@ -151,8 +171,7 @@
                         <div>
                             <h3>Dental care with clarity and comfort.</h3>
                             <p>
-                                From consultation to treatment explanation, the experience is planned to help
-                                patients feel relaxed, informed and confident.
+                                {{ $about->approach_description ?? 'From consultation to treatment explanation, the experience is planned to help patients feel relaxed, informed and confident.' }}
                             </p>
                         </div>
                     </div>
@@ -164,7 +183,7 @@
                                 <i class="bi bi-check2"></i>
                             </span>
 
-                            <span>Clean and patient-friendly clinic environment</span>
+                            <span>{{ $about->feature_1_title ?? 'Clean and patient-friendly clinic environment' }}</span>
                         </div>
 
                         <div class="about-feature-item">
@@ -172,7 +191,7 @@
                                 <i class="bi bi-check2"></i>
                             </span>
 
-                            <span>Modern dental services for family dental care</span>
+                            <span>{{ $about->feature_2_title ?? 'Modern dental services for family dental care' }}</span>
                         </div>
 
                         <div class="about-feature-item">
@@ -180,18 +199,18 @@
                                 <i class="bi bi-check2"></i>
                             </span>
 
-                            <span>Easy call, WhatsApp and appointment support</span>
+                            <span>{{ $about->feature_3_title ?? 'Easy call, WhatsApp and appointment support' }}</span>
                         </div>
 
                     </div>
 
                     <div class="about-intro-actions">
-                        <a href="appointment.html" class="about-intro-primary">
-                            Book Appointment
+                        <a href="{{ $about?->intro_button_url ?: route('frontend.appointment') }}" class="about-intro-primary">
+                            {{ $about?->intro_button_text ?: 'Book Appointment' }}
                             <i class="bi bi-arrow-right"></i>
                         </a>
 
-                        <a href="tel:+919608701058" class="about-intro-secondary">
+                        <a href="{{ $callLink }}" class="about-intro-secondary">
                             <i class="bi bi-telephone-fill"></i>
                             Call Clinic
                         </a>
@@ -315,11 +334,10 @@
                         Mission & Vision
                     </span>
 
-                    <h2>Building healthier smiles with a premium patient-first experience.</h2>
+                    <h2>{{ $about->mission_title ?? 'Building healthier smiles with a premium patient-first experience.' }}</h2>
 
                     <p>
-                        Dr. Richa Dental Care aims to provide reliable dental treatments with clean clinic
-                        standards, easy appointment access and a friendly consultation experience.
+                        {{ $about->mission_description ?? "{$siteName} aims to provide reliable dental treatments with clean clinic standards, easy appointment access and a friendly consultation experience." }}
                     </p>
 
                     <div class="mission-highlight">
@@ -328,9 +346,9 @@
                         </div>
 
                         <div>
-                            <strong>Focused on trust and clarity.</strong>
+                            <strong>{{ $about->approach_title ?? 'Focused on trust and clarity.' }}</strong>
                             <span>
-                                Every treatment journey is planned with patient comfort, hygiene and clear guidance.
+                                {{ $about->approach_description ?? 'Every treatment journey is planned with patient comfort, hygiene and clear guidance.' }}
                             </span>
                         </div>
                     </div>
@@ -348,11 +366,10 @@
                             <i class="bi bi-flag"></i>
                         </div>
 
-                        <h3>Our Mission</h3>
+                        <h3>{{ $about->mission_title ?? 'Our Mission' }}</h3>
 
                         <p>
-                            To provide hygienic, comfortable and clear dental care for patients and families
-                            in Keshri Nagar, North Patel Nagar and nearby Patna areas.
+                            {{ $about->mission_description ?? 'To provide hygienic, comfortable and clear dental care for patients and families in Keshri Nagar, North Patel Nagar and nearby Patna areas.' }}
                         </p>
 
                         <div class="mission-card-line"></div>
@@ -365,11 +382,10 @@
                             <i class="bi bi-eye"></i>
                         </div>
 
-                        <h3>Our Vision</h3>
+                        <h3>{{ $about->vision_title ?? 'Our Vision' }}</h3>
 
                         <p>
-                            To become a trusted local dental clinic known for premium care, patient comfort
-                            and confident smile transformations.
+                            {{ $about->vision_description ?? 'To become a trusted local dental clinic known for premium care, patient comfort and confident smile transformations.' }}
                         </p>
 
                         <div class="mission-card-line"></div>
@@ -460,7 +476,7 @@
                     </div>
 
                     <div class="facility-image-box">
-                        <img src="assets/img/img4.png" alt="Modern dental treatment room">
+                        <img src="{{ asset('assets/img/img4.png') }}" alt="Modern dental treatment room">
                         <div class="facility-image-badge">
                             <i class="bi bi-shield-check"></i>
                             <span>Clean Treatment Space</span>
@@ -545,7 +561,7 @@
                 <div class="about-doctor-visual">
 
                     <div class="about-doctor-image">
-                        <img src="assets/img/img5.png" alt="Dr. Richa Dental Care dentist">
+                        <img src="{{ $doctorImage }}" alt="{{ $doctorName }}">
 
                         <div class="doctor-image-overlay"></div>
 
@@ -555,8 +571,8 @@
                             </span>
 
                             <span>
-                                <strong>Dr. Richa</strong>
-                                <small>Dental Care Specialist</small>
+                                <strong>{{ $doctorName }}</strong>
+                                <small>{{ $doctorDesignation }}</small>
                             </span>
                         </div>
 
@@ -598,11 +614,10 @@
                         Meet The Doctor
                     </span>
 
-                    <h2>Meet Dr. Richa</h2>
+                    <h2>Meet {{ $doctorName }}</h2>
 
                     <p>
-                        Doctor qualification, experience and specialization details can be updated here
-                        after receiving the final profile from the clinic.
+                        {{ $doctorDescription }}
                     </p>
 
                     <div class="doctor-note-card">
@@ -613,25 +628,24 @@
                         <div>
                             <h3>Gentle guidance for confident dental decisions.</h3>
                             <p>
-                                Focused on clean treatment planning, patient comfort and clear explanation
-                                before every dental procedure.
+                                {{ $doctor->availability_note ?? 'Focused on clean treatment planning, patient comfort and clear explanation before every dental procedure.' }}
                             </p>
                         </div>
                     </div>
 
                     <div class="doctor-chip-list">
-                        <span><i class="bi bi-check2-circle"></i> Dental Consultation</span>
-                        <span><i class="bi bi-check2-circle"></i> Root Canal Treatment</span>
-                        <span><i class="bi bi-check2-circle"></i> Cosmetic Dentistry</span>
+                        <span><i class="bi bi-check2-circle"></i> {{ $doctor->qualification_value ?? 'Dental Consultation' }}</span>
+                        <span><i class="bi bi-check2-circle"></i> {{ $doctor->specialization_value ?? 'Root Canal Treatment' }}</span>
+                        <span><i class="bi bi-check2-circle"></i> {{ $doctor->experience_text ?? 'Cosmetic Dentistry' }}</span>
                     </div>
 
                     <div class="about-doctor-actions">
-                        <a href="dentist-profile.html" class="about-page-btn">
+                        <a href="{{ route('frontend.dentist-profile') }}" class="about-page-btn">
                             View Doctor Profile
                             <i class="bi bi-arrow-right"></i>
                         </a>
 
-                        <a href="appointment.html" class="about-outline-btn">
+                        <a href="{{ route('frontend.appointment') }}" class="about-outline-btn">
                             <i class="bi bi-calendar2-check"></i>
                             Book Appointment
                         </a>
@@ -664,7 +678,7 @@
                     <h2>Need dental care near Baba Chowk, Keshri Nagar?</h2>
 
                     <p>
-                        Call or book your appointment with Dr. Richa Dental Care for a clean,
+                        Call or book your appointment with {{ $siteName }} for a clean,
                         comfortable and patient-friendly dental visit.
                     </p>
 
@@ -693,12 +707,12 @@
                     </p>
 
                     <div class="about-cta-actions">
-                        <a href="appointment.html" class="about-page-btn">
+                        <a href="{{ route('frontend.appointment') }}" class="about-page-btn">
                             Book Appointment
                             <i class="bi bi-arrow-right"></i>
                         </a>
 
-                        <a href="tel:+919608701058" class="about-outline-btn">
+                        <a href="{{ $callLink }}" class="about-outline-btn">
                             <i class="bi bi-telephone-fill"></i>
                             Call Clinic
                         </a>

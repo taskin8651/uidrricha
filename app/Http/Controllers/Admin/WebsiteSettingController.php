@@ -60,6 +60,7 @@ class WebsiteSettingController extends Controller
             'contact_number'    => '+91 96087 01058',
             'whatsapp_number'   => '919608701058',
             'clinic_address'    => '12, Road Number 17, near Baba Chowk, Bank Colony, Keshri Nagar, Patna, Bihar 800024',
+            'clinic_hours'      => 'Mon - Sat, 10 AM - 8:30 PM',
             'map_embed_url'     => 'https://www.google.com/maps?q=Keshri%20Nagar%20Patna%20800024&output=embed',
             'map_direction_url' => 'https://www.google.com/maps?q=12%2C%20Road%20Number%2017%2C%20near%20Baba%20Chowk%2C%20Bank%20Colony%2C%20Keshri%20Nagar%2C%20Patna%2C%20Bihar%20800024',
         ];

@@ -188,6 +188,22 @@
                 </div>
 
                 <div class="field-group">
+                    <label class="field-label" for="clinic_hours">Clinic Hours</label>
+                    <div class="input-icon-wrap">
+                        <i class="fas fa-clock icon"></i>
+                        <input type="text"
+                               name="clinic_hours"
+                               id="clinic_hours"
+                               value="{{ old('clinic_hours', $websiteSetting->clinic_hours) }}"
+                               placeholder="Mon - Sat, 10 AM - 8:30 PM"
+                               class="field-input {{ $errors->has('clinic_hours') ? 'error' : '' }}">
+                    </div>
+                    @if($errors->has('clinic_hours'))
+                        <p class="field-error"><i class="fas fa-exclamation-circle"></i> {{ $errors->first('clinic_hours') }}</p>
+                    @endif
+                </div>
+
+                <div class="field-group">
                     <label class="field-label" for="map_embed_url">Google Map Embed URL</label>
                     <textarea name="map_embed_url"
                               id="map_embed_url"

@@ -26,6 +26,7 @@
     $contactNumber = $websiteSetting->contact_number ?? '+91 96087 01058';
     $whatsappNumber = $websiteSetting->whatsapp_number ?? '919608701058';
     $clinicAddress = $websiteSetting->clinic_address ?? '12, Road Number 17, near Baba Chowk, Bank Colony, Keshri Nagar, Patna, Bihar 800024';
+    $clinicHours = $websiteSetting->clinic_hours ?? 'Mon - Sat, 10 AM - 8:30 PM';
     $callLink = 'tel:' . preg_replace('/\s+/', '', $contactNumber);
     $whatsappLink = 'https://wa.me/' . preg_replace('/\D+/', '', $whatsappNumber);
     $appointmentWhatsappLink = $whatsappLink . '?text=' . rawurlencode("Hi {$siteName}, I want to book an appointment.");
@@ -86,7 +87,7 @@
 
                     <span class="top-info-item">
                         <i class="bi bi-clock"></i>
-                        <span>Mon - Sat: 10 AM - 8:30 PM</span>
+                        <span>{{ $clinicHours }}</span>
                     </span>
                 </div>
 
@@ -291,7 +292,7 @@
                                 </span>
 
                                 <p>
-                                    Mon - Sat, 10 AM - 8:30 PM<br>
+                                    {{ $clinicHours }}<br>
                                     Sunday Closed
                                 </p>
                             </div>

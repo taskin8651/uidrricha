@@ -10,7 +10,8 @@ class AddLocationFieldsToWebsiteSettingsTable extends Migration
     {
         Schema::table('website_settings', function (Blueprint $table) {
             $table->longText('clinic_address')->nullable()->after('whatsapp_number');
-            $table->longText('map_embed_url')->nullable()->after('clinic_address');
+            $table->string('clinic_hours')->nullable()->after('clinic_address');
+            $table->longText('map_embed_url')->nullable()->after('clinic_hours');
             $table->longText('map_direction_url')->nullable()->after('map_embed_url');
         });
     }
@@ -20,6 +21,7 @@ class AddLocationFieldsToWebsiteSettingsTable extends Migration
         Schema::table('website_settings', function (Blueprint $table) {
             $table->dropColumn([
                 'clinic_address',
+                'clinic_hours',
                 'map_embed_url',
                 'map_direction_url',
             ]);

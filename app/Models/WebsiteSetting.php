@@ -26,6 +26,7 @@ class WebsiteSetting extends Model implements HasMedia
         'contact_number',
         'whatsapp_number',
         'clinic_address',
+        'clinic_hours',
         'map_embed_url',
         'map_direction_url',
     ];
