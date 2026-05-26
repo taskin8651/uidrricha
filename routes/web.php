@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\DentistController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\TestimonialController;
 use App\Http\Controllers\Frontend\EnquiryController;
+use App\Models\ServiceSection;
 
 use App\Http\Controllers\Frontend\FaqController;
 
@@ -124,9 +125,21 @@ Route::get('/faq.html', [FaqController::class, 'index']);
 Route::get('/faqs', [FaqController::class, 'index']);
 Route::get('/faqs.html', [FaqController::class, 'index']);
 
-Route::view('/contact', 'frontend.contact')->name('frontend.contact');
+Route::get('/contact', function () {
+    $serviceSections = ServiceSection::where('status', 1)
+        ->orderBy('sort_order', 'asc')
+        ->get();
+
+    return view('frontend.contact', compact('serviceSections'));
+})->name('frontend.contact');
 Route::view('/appointment', 'frontend.appointment')->name('frontend.appointment');
-Route::view('/contact.html', 'frontend.contact');
+Route::get('/contact.html', function () {
+    $serviceSections = ServiceSection::where('status', 1)
+        ->orderBy('sort_order', 'asc')
+        ->get();
+
+    return view('frontend.contact', compact('serviceSections'));
+});
 Route::view('/appointment.html', 'frontend.appointment');
 Route::post('/contact-enquiry', [EnquiryController::class, 'storeContact'])->name('contact.enquiry.store');
 Route::post('/appointment-request', [EnquiryController::class, 'storeAppointment'])->name('appointment.request.store');

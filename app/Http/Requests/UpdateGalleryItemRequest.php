@@ -2,27 +2,31 @@
 
 namespace App\Http\Requests;
 
+use Gate;
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class UpdateGalleryItemRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        abort_if(Gate::denies('gallery_item_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            //
+            'gallery_category_id' => ['nullable', 'integer', 'exists:gallery_categories,id'],
+            'label'               => ['nullable', 'string', 'max:255'],
+            'title'               => ['nullable', 'string', 'max:255'],
+            'description'         => ['nullable', 'string'],
+            'alt_text'            => ['nullable', 'string', 'max:255'],
+            'card_size'           => ['nullable', 'in:normal,large,tall,wide'],
+            'sort_order'          => ['nullable', 'integer'],
+            'status'              => ['nullable', 'boolean'],
+            'gallery_image'       => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
         ];
     }
 }

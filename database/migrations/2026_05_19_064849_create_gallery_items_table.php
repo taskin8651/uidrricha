@@ -18,6 +18,7 @@ class CreateGalleryItemsTable extends Migration
 
             $table->string('label')->nullable();
             $table->string('title')->nullable();
+            $table->text('description')->nullable();
             $table->string('alt_text')->nullable();
 
             $table->enum('card_size', ['normal', 'large', 'tall', 'wide'])->default('normal');

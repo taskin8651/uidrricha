@@ -113,6 +113,25 @@
                 </div>
 
                 <div class="field-group">
+                    <label class="field-label" for="description">
+                        Description
+                    </label>
+
+                    <textarea name="description"
+                              id="description"
+                              rows="4"
+                              placeholder="Short gallery image description..."
+                              class="field-textarea {{ $errors->has('description') ? 'error' : '' }}">{{ old('description') }}</textarea>
+
+                    @if($errors->has('description'))
+                        <p class="field-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ $errors->first('description') }}
+                        </p>
+                    @endif
+                </div>
+
+                <div class="field-group">
                     <label class="field-label" for="alt_text">
                         Image Alt Text
                     </label>

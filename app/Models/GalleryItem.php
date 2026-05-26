@@ -18,6 +18,7 @@ class GalleryItem extends Model implements HasMedia
         'gallery_category_id',
         'label',
         'title',
+        'description',
         'alt_text',
         'card_size',
         'sort_order',
