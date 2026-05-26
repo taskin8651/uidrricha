@@ -1,0 +1,131 @@
+<?php
+
+use App\Http\Controllers\Frontend\ServicesController;
+use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\DentistController;
+use App\Http\Controllers\Frontend\GalleryController;
+use App\Http\Controllers\Frontend\TestimonialController;
+use App\Http\Controllers\Frontend\EnquiryController;
+
+use App\Http\Controllers\Frontend\FaqController;
+
+
+
+
+
+
+
+Route::get('/', [IndexController::class, 'index'])->name('frontend.home');
+Route::get('/home', function () {
+    if (session('status')) {
+        return redirect()->route('admin.home')->with('status', session('status'));
+    }
+
+    return redirect()->route('admin.home');
+});
+ 
+Auth::routes();
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    // Permissions
+    Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
+    Route::resource('permissions', 'PermissionsController');
+
+    // Roles
+    Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
+    Route::resource('roles', 'RolesController');
+
+    // Users
+    Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::resource('users', 'UsersController');
+
+    // Audit Logs
+    Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+    Route::delete('service-sections/destroy', 'ServiceSectionController@massDestroy')->name('service-sections.massDestroy');
+Route::resource('service-sections', 'ServiceSectionController');
+
+Route::get('about-page-section', 'AboutPageSectionController@index')->name('about-page-section.index');
+    Route::put('about-page-section', 'AboutPageSectionController@update')->name('about-page-section.update');
+    
+Route::get('hero-section', 'HeroSectionController@index')->name('hero-section.index');
+Route::put('hero-section', 'HeroSectionController@update')->name('hero-section.update');
+
+    Route::get('dentist-profile-section', 'DentistProfileSectionController@index')->name('dentist-profile-section.index');
+Route::put('dentist-profile-section', 'DentistProfileSectionController@update')->name('dentist-profile-section.update');
+
+Route::delete('gallery-categories/destroy', 'GalleryCategoryController@massDestroy')->name('gallery-categories.massDestroy');
+Route::resource('gallery-categories', 'GalleryCategoryController');
+
+Route::delete('gallery-items/destroy', 'GalleryItemController@massDestroy')->name('gallery-items.massDestroy');
+Route::resource('gallery-items', 'GalleryItemController');
+
+Route::delete('before-after-galleries/destroy', 'BeforeAfterGalleryController@massDestroy')->name('before-after-galleries.massDestroy');
+Route::resource('before-after-galleries', 'BeforeAfterGalleryController');
+
+Route::delete('testimonials/destroy', 'TestimonialController@massDestroy')->name('testimonials.massDestroy');
+Route::resource('testimonials', 'TestimonialController');
+
+Route::delete('faqs/destroy', 'FaqController@massDestroy')->name('faqs.massDestroy');
+    Route::resource('faqs', 'FaqController');
+
+Route::delete('contact-enquiries/destroy', 'ContactEnquiryController@massDestroy')->name('contact-enquiries.massDestroy');
+Route::resource('contact-enquiries', 'ContactEnquiryController', [
+    'only'       => ['index', 'show', 'destroy'],
+    'parameters' => ['contact-enquiries' => 'contactEnquiry'],
+]);
+
+Route::delete('appointment-requests/destroy', 'AppointmentRequestController@massDestroy')->name('appointment-requests.massDestroy');
+Route::resource('appointment-requests', 'AppointmentRequestController', [
+    'only'       => ['index', 'show', 'destroy'],
+    'parameters' => ['appointment-requests' => 'appointmentRequest'],
+]);
+
+Route::get('website-settings', 'WebsiteSettingController@index')->name('website-settings.index');
+Route::put('website-settings', 'WebsiteSettingController@update')->name('website-settings.update');
+});
+Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
+    // Change password
+    if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
+        Route::get('password', 'ChangePasswordController@edit')->name('password.edit');
+        Route::post('password', 'ChangePasswordController@update')->name('password.update');
+        Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
+        Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
+    }
+});
+
+
+Route::get('/index', [IndexController::class, 'index'])->name('frontend.index');
+Route::get('/index.html', [IndexController::class, 'index']);
+
+Route::get('/services', [ServicesController::class, 'index'])->name('frontend.services.index');
+Route::get('/services.html', [ServicesController::class, 'index']);
+
+Route::get('/about', [AboutController::class, 'index'])->name('frontend.about');
+Route::get('/about.html', [AboutController::class, 'index']);
+
+
+Route::get('/dentist-profile', [DentistController::class, 'index'])->name('frontend.dentist-profile');
+Route::get('/dentist-profile.html', [DentistController::class, 'index']);
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('frontend.gallery');
+Route::get('/gallery.html', [GalleryController::class, 'index']);
+
+
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('frontend.testimonials');
+Route::get('/testimonials.html', [TestimonialController::class, 'index']);
+
+
+Route::get('/faq', [FaqController::class, 'index'])->name('frontend.faq');
+Route::get('/faq.html', [FaqController::class, 'index']);
+Route::get('/faqs', [FaqController::class, 'index']);
+Route::get('/faqs.html', [FaqController::class, 'index']);
+
+Route::view('/contact', 'frontend.contact')->name('frontend.contact');
+Route::view('/appointment', 'frontend.appointment')->name('frontend.appointment');
+Route::view('/contact.html', 'frontend.contact');
+Route::view('/appointment.html', 'frontend.appointment');
+Route::post('/contact-enquiry', [EnquiryController::class, 'storeContact'])->name('contact.enquiry.store');
+Route::post('/appointment-request', [EnquiryController::class, 'storeAppointment'])->name('appointment.request.store');
