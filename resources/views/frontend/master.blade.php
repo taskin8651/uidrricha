@@ -260,7 +260,7 @@
 
                         <ul>
                             @forelse($footerServices as $footerService)
-                                <li><a href="{{ route('frontend.services.index') }}">{{ \Illuminate\Support\Str::limit($footerService->title, 28) }}</a></li>
+                                <li><a href="{{ route('frontend.services.show', $footerService->slug) }}">{{ \Illuminate\Support\Str::limit($footerService->title, 28) }}</a></li>
                             @empty
                                 <li><a href="{{ route('frontend.services.index') }}">Root Canal</a></li>
                                 <li><a href="{{ route('frontend.services.index') }}">Teeth Cleaning</a></li>

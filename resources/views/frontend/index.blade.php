@@ -102,7 +102,7 @@
                     <div class="hero-image-overlay">
                         <div class="hero-card-top">
                             <span class="overlay-icon">
-                                <i class="{{ $hero?->top_card_icon ?: 'bi bi-star-fill' }}"></i>
+                                <i class="bi bi-star-fill"></i>
                             </span>
                             <div>
                                 <strong>{{ $hero?->top_card_title ?: 'Trusted Dental Care' }}</strong>
@@ -111,7 +111,7 @@
                         </div>
 
                         <div class="hero-mini-card mini-card-left">
-                            <i class="{{ $hero?->bottom_card_icon ?: 'bi bi-calendar2-check' }}"></i>
+                            <i class="bi bi-calendar2-check"></i>
                             <div>
                                 <strong>{{ $hero?->bottom_card_title ?: 'Easy Booking' }}</strong>
                                 <small>{{ $hero?->bottom_card_text ?: 'Quick appointment' }}</small>
@@ -235,7 +235,7 @@
 
                 <div class="about-highlight-box">
                     <div class="about-highlight-icon">
-                        <i class="{{ $about?->approach_icon ?: 'bi bi-stars' }}"></i>
+                        <i class="bi bi-stars"></i>
                     </div>
                     <div>
                         <h3>{{ $about?->approach_title ?: 'Designed for calm and confident dental visits.' }}</h3>
@@ -249,7 +249,7 @@
                     @foreach($aboutFeatures as $feature)
                         <div class="feature-row">
                             <span class="feature-icon">
-                                <i class="{{ $feature[0] }}"></i>
+                                <i class="bi bi-check"></i>
                             </span>
                             <span>{{ $feature[1] }}</span>
                         </div>
