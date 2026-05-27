@@ -12,6 +12,7 @@
     .dash-title {
         margin: 0;
         color: #111827;
+        font-family: "Playfair Display", serif;
         font-size: 24px;
         font-weight: 800;
     }
@@ -45,7 +46,7 @@
         background: #fff;
         border: 1px solid #e5e7eb;
         border-radius: 14px;
-        box-shadow: 0 10px 28px rgba(15, 23, 42, .04);
+        box-shadow: 0 16px 45px rgba(31, 20, 48, .08);
     }
     .priority-card {
         padding: 18px;
@@ -60,7 +61,7 @@
         width: 92px;
         height: 92px;
         border-radius: 50%;
-        background: rgba(79, 70, 229, .08);
+        background: rgba(139, 92, 246, .10);
     }
     .priority-icon {
         width: 42px;
@@ -69,8 +70,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #eef2ff;
-        color: #4f46e5;
+        background: #f5f3ff;
+        color: #8b5cf6;
         margin-bottom: 12px;
         font-size: 17px;
     }
@@ -118,7 +119,7 @@
         font-weight: 800;
     }
     .dash-card-link {
-        color: #4f46e5;
+        color: #8b5cf6;
         text-decoration: none;
         font-size: 12px;
         font-weight: 800;
@@ -187,14 +188,14 @@
     }
     .module-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 14px 34px rgba(15, 23, 42, .08);
+        box-shadow: 0 24px 70px rgba(31, 20, 48, .12);
     }
     .module-icon {
         width: 40px;
         height: 40px;
         border-radius: 12px;
-        background: #f0f9ff;
-        color: #0284c7;
+        background: #f5f3ff;
+        color: #8b5cf6;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -214,7 +215,7 @@
     }
     .module-count {
         margin-left: auto;
-        color: #4f46e5;
+        color: #8b5cf6;
         font-weight: 900;
         font-size: 20px;
         line-height: 1;
@@ -280,7 +281,7 @@
     </a>
 
     <a href="{{ route('admin.service-sections.index') }}" class="priority-card" style="text-decoration:none;">
-        <div class="priority-icon" style="background:#fdf2f8;color:#db2777;"><i class="fas fa-tooth"></i></div>
+        <div class="priority-icon" style="background:#fff1f4;color:#fb7185;"><i class="fas fa-tooth"></i></div>
         <p class="priority-label">Active Content</p>
         <p class="priority-value">{{ $stats['services'] + $stats['gallery_items'] + $stats['testimonials'] }}</p>
         <p class="priority-note">Services, gallery items and reviews</p>

@@ -7,6 +7,12 @@
 @php
     $colors = ['#4F46E5','#0EA5E9','#10B981','#F59E0B','#EF4444','#8B5CF6','#EC4899','#14B8A6'];
     $color = $colors[$faq->id % count($colors)];
+    $faqCategories = [
+        'common' => 'Common Questions',
+        'appointment' => 'Appointment',
+        'treatment' => 'Treatment & Timing',
+        'location' => 'Location & Contact',
+    ];
 @endphp
 
 <div class="admin-page-head">
@@ -56,7 +62,7 @@
                 </div>
 
                 <p class="profile-title">{{ $faq->question }}</p>
-                <p class="profile-subtitle">FAQ Item</p>
+                <p class="profile-subtitle">{{ $faqCategories[$faq->category ?? 'common'] ?? 'FAQ Item' }}</p>
 
                 <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
                     @if($faq->status)
@@ -177,6 +183,11 @@
                 <div class="detail-row">
                     <span class="detail-label">Answer</span>
                     <span class="detail-value">{{ $faq->answer ?? 'N/A' }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Category</span>
+                    <span class="detail-value">{{ $faqCategories[$faq->category ?? 'common'] ?? ucfirst($faq->category ?? 'Common') }}</span>
                 </div>
 
                 <div class="detail-row">

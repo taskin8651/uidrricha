@@ -20,6 +20,7 @@ class StoreFaqRequest extends FormRequest
         return [
             'question'   => ['nullable', 'string', 'max:255'],
             'answer'     => ['nullable', 'string'],
+            'category'   => ['nullable', 'string', 'max:50'],
             'sort_order' => ['nullable', 'integer'],
             'is_open'    => ['nullable', 'boolean'],
             'status'     => ['nullable', 'boolean'],

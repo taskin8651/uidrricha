@@ -4,6 +4,15 @@
 
 @section('content')
 
+@php
+    $faqCategories = [
+        'common' => 'Common Questions',
+        'appointment' => 'Appointment',
+        'treatment' => 'Treatment & Timing',
+        'location' => 'Location & Contact',
+    ];
+@endphp
+
 <div class="admin-page-head">
     <div>
         <a href="{{ route('admin.faqs.index') }}" class="admin-back-link">
@@ -55,6 +64,31 @@
                         <p class="field-error">
                             <i class="fas fa-exclamation-circle"></i>
                             {{ $errors->first('question') }}
+                        </p>
+                    @endif
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="category">Category</label>
+
+                    <div class="input-icon-wrap">
+                        <i class="fas fa-layer-group icon"></i>
+
+                        <select name="category"
+                                id="category"
+                                class="field-input {{ $errors->has('category') ? 'error' : '' }}">
+                            @foreach($faqCategories as $value => $label)
+                                <option value="{{ $value }}" {{ old('category', 'common') === $value ? 'selected' : '' }}>
+                                    {{ $label }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    @if($errors->has('category'))
+                        <p class="field-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ $errors->first('category') }}
                         </p>
                     @endif
                 </div>

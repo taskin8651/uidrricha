@@ -13,6 +13,7 @@ class CreateFaqsTable extends Migration
 
             $table->string('question')->nullable();
             $table->longText('answer')->nullable();
+            $table->string('category')->default('common');
 
             $table->integer('sort_order')->default(0);
             $table->boolean('is_open')->default(0);

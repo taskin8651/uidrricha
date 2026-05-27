@@ -83,63 +83,16 @@ class PermissionsTableSeeder extends Seeder
                 'title' => 'audit_log_access',
             ],
             [
-                'id'    => 19,
-                'title' => 'epaper_create',
-            ],
-            [
-                'id'    => 20,
-                'title' => 'epaper_edit',
-            ],
-            [
-                'id'    => 21,
-                'title' => 'epaper_show',
-            ],
-            [
-                'id'    => 22,
-                'title' => 'epaper_delete',
-            ],
-            [
-                'id'    => 23,
-                'title' => 'epaper_access',
-            ],
-            [
                 'id'    => 24,
                 'title' => 'profile_password_edit',
             ],
-            [
-                'id'    => 25,
-                'title' => 'contact_enquiry_access',
-            ],
-            [
-                'id'    => 26,
-                'title' => 'contact_enquiry_show',
-            ],
-            [
-                'id'    => 27,
-                'title' => 'contact_enquiry_delete',
-            ],
-            [
-                'id'    => 28,
-                'title' => 'appointment_request_access',
-            ],
-            [
-                'id'    => 29,
-                'title' => 'appointment_request_show',
-            ],
-            [
-                'id'    => 30,
-                'title' => 'appointment_request_delete',
-            ],
-            [
-                'id'    => 31,
-                'title' => 'website_setting_access',
-            ],
-            [
-                'id'    => 32,
-                'title' => 'website_setting_edit',
-            ],
         ];
 
-        Permission::insert($permissions);
+        foreach ($permissions as $permission) {
+            Permission::updateOrCreate(
+                ['id' => $permission['id']],
+                ['title' => $permission['title']]
+            );
+        }
     }
 }

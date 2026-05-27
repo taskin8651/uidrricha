@@ -1,4 +1,6 @@
-@extends('frontend.master')
+@extends('layouts.auth')
+
+@section('page-title', 'Login | ' . trans('panel.site_title'))
 
 @section('content')
 
@@ -149,7 +151,7 @@
 
                     @if(Route::has('register'))
                         <div class="auth-register">
-                            <span>Don’t have an account?</span>
+                            <span>Don't have an account?</span>
                             <a href="{{ route('register') }}">
                                 {{ trans('global.register') }}
                             </a>
@@ -160,7 +162,7 @@
             </div>
 
             <p class="auth-copy">
-                © {{ date('Y') }} {{ trans('panel.site_title') }}. All rights reserved.
+                &copy; {{ date('Y') }} {{ trans('panel.site_title') }}. All rights reserved.
             </p>
 
         </div>
@@ -178,12 +180,12 @@
     min-height: 100vh;
     overflow: hidden;
     background:
-        radial-gradient(circle at 12% 18%, rgba(0, 188, 212, 0.18), transparent 32%),
-        radial-gradient(circle at 88% 75%, rgba(0, 125, 145, 0.14), transparent 35%),
-        radial-gradient(circle at 50% 100%, rgba(232, 251, 255, 0.95), transparent 45%),
-        linear-gradient(135deg, #f7fdff 0%, #ffffff 48%, #eefcff 100%);
-    font-family: "Inter", sans-serif;
-    color: var(--text, #4b6475);
+        radial-gradient(circle at 10% 18%, rgba(251, 113, 133, 0.14), transparent 30%),
+        radial-gradient(circle at 92% 12%, rgba(139, 92, 246, 0.16), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(245, 243, 255, 0.95), transparent 45%),
+        linear-gradient(135deg, #ffffff 0%, #fff8fb 46%, #f5f3ff 100%);
+    font-family: "Manrope", sans-serif;
+    color: #6f637a;
 }
 
 .auth-premium-page::before {
@@ -191,10 +193,10 @@
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(0, 166, 184, 0.038) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 166, 184, 0.038) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 92%);
+        linear-gradient(rgba(139, 92, 246, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.055) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 78%);
     pointer-events: none;
 }
 
@@ -212,7 +214,7 @@
     top: 80px;
     background:
         radial-gradient(circle at 34% 28%, rgba(255,255,255,0.86), transparent 26%),
-        linear-gradient(135deg, rgba(0, 213, 240, 0.20), rgba(0, 125, 145, 0.08));
+        linear-gradient(135deg, rgba(251, 113, 133, 0.20), rgba(139, 92, 246, 0.10));
 }
 
 .auth-shape-two {
@@ -222,7 +224,7 @@
     bottom: -190px;
     background:
         radial-gradient(circle at 35% 30%, rgba(255,255,255,0.78), transparent 24%),
-        linear-gradient(135deg, rgba(0, 125, 145, 0.13), rgba(0, 188, 212, 0.08));
+        linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(251, 113, 133, 0.10));
 }
 
 .auth-wrapper {
@@ -243,8 +245,8 @@
     color: #ffffff;
     background:
         radial-gradient(circle at 10% 20%, rgba(255,255,255,0.22), transparent 30%),
-        radial-gradient(circle at 90% 90%, rgba(126,231,243,0.20), transparent 34%),
-        linear-gradient(135deg, #041e2f 0%, #06283d 48%, #031724 100%);
+        radial-gradient(circle at 90% 90%, rgba(251, 113, 133, 0.18), transparent 34%),
+        linear-gradient(135deg, #1f1430 0%, #4c1d95 52%, #2e1065 100%);
 }
 
 .auth-brand-panel::before {
@@ -252,8 +254,8 @@
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(126, 231, 243, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(126, 231, 243, 0.045) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
     background-size: 44px 44px;
     mask-image: linear-gradient(to bottom, rgba(0,0,0,.75), transparent 92%);
 }
@@ -265,7 +267,7 @@
     position: absolute;
     right: 52px;
     bottom: 34px;
-    color: rgba(126, 231, 243, 0.08);
+    color: rgba(255, 255, 255, 0.08);
     font-size: 210px;
     line-height: 1;
 }
@@ -283,7 +285,7 @@
     margin-bottom: 24px;
     padding: 10px 17px;
     border-radius: 999px;
-    color: #eaffff;
+    color: #ffffff;
     font-size: 13px;
     font-weight: 950;
     background: rgba(255,255,255,.12);
@@ -297,7 +299,7 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    color: #007d91;
+    color: #8b5cf6;
     background: #ffffff;
 }
 
@@ -305,6 +307,7 @@
     margin: 0 0 24px;
     max-width: 680px;
     color: #ffffff;
+    font-family: "Playfair Display", serif;
     font-size: clamp(42px, 5vw, 68px);
     line-height: 1.03;
     letter-spacing: -2.5px;
@@ -366,11 +369,11 @@
     overflow: hidden;
     border-radius: 38px;
     background:
-        linear-gradient(145deg, rgba(255,255,255,.98), rgba(244,252,255,.92));
-    border: 1px solid rgba(6, 40, 61, 0.08);
+        linear-gradient(145deg, rgba(255,255,255,.98), rgba(245,243,255,.92));
+    border: 1px solid rgba(139, 92, 246, 0.14);
     box-shadow:
-        0 34px 90px rgba(6, 40, 61, 0.14),
-        0 12px 34px rgba(0, 166, 184, 0.08),
+        0 34px 90px rgba(31, 20, 48, 0.14),
+        0 12px 34px rgba(139, 92, 246, 0.10),
         inset 0 1px 0 rgba(255,255,255,.95);
 }
 
@@ -378,7 +381,7 @@
     position: relative;
     text-align: center;
     padding: 38px 34px 26px;
-    border-bottom: 1px solid rgba(6, 40, 61, 0.07);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.12);
 }
 
 .auth-logo-icon {
@@ -392,15 +395,16 @@
     font-size: 28px;
     background:
         radial-gradient(circle at 30% 24%, rgba(255,255,255,.42), transparent 32%),
-        linear-gradient(135deg, #00d5f0 0%, #00a6b8 45%, #007d91 100%);
+        linear-gradient(135deg, #4c1d95 0%, #8b5cf6 58%, #fb7185 100%);
     box-shadow:
-        0 18px 38px rgba(0,166,184,.30),
+        0 18px 38px rgba(139, 92, 246, .28),
         inset 0 1px 0 rgba(255,255,255,.35);
 }
 
 .auth-card-head h2 {
     margin: 0;
-    color: #06283d;
+    color: #1f1430;
+    font-family: "Playfair Display", serif;
     font-size: 32px;
     line-height: 1.1;
     letter-spacing: -1.1px;
@@ -409,7 +413,7 @@
 
 .auth-card-head p {
     margin: 8px 0 0;
-    color: #617989;
+    color: #6f637a;
     font-size: 14px;
     font-weight: 600;
 }
@@ -421,11 +425,11 @@
     margin: 24px 34px 0;
     padding: 14px 16px;
     border-radius: 18px;
-    color: #007d91;
+    color: #4c1d95;
     font-size: 14px;
     font-weight: 700;
-    background: rgba(0, 166, 184, 0.08);
-    border: 1px solid rgba(0, 166, 184, 0.14);
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.14);
 }
 
 .auth-form {
@@ -439,7 +443,7 @@
 .auth-field label {
     display: block;
     margin-bottom: 9px;
-    color: #06283d;
+    color: #1f1430;
     font-size: 14px;
     font-weight: 900;
 }
@@ -453,7 +457,7 @@
     left: 17px;
     top: 50%;
     transform: translateY(-50%);
-    color: #00a6b8;
+    color: #8b5cf6;
     font-size: 15px;
 }
 
@@ -463,29 +467,29 @@
     padding: 0 52px 0 48px;
     border-radius: 20px;
     outline: none;
-    color: #06283d;
+    color: #1f1430;
     font-size: 15px;
     font-weight: 700;
     background:
-        linear-gradient(145deg, rgba(255,255,255,.96), rgba(248,252,253,.94));
-    border: 1px solid rgba(6, 40, 61, 0.09);
+        linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,248,251,.94));
+    border: 1px solid rgba(139, 92, 246, 0.14);
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.9),
-        0 10px 24px rgba(6, 40, 61, 0.045);
+        0 10px 24px rgba(31, 20, 48, 0.045);
     transition: .3s ease;
 }
 
 .auth-input-wrap input::placeholder {
-    color: #8aa0ad;
+    color: #9b8ca8;
     font-weight: 700;
 }
 
 .auth-input-wrap input:focus {
-    border-color: rgba(0, 166, 184, 0.45);
+    border-color: rgba(139, 92, 246, 0.45);
     background: #ffffff;
     box-shadow:
-        0 0 0 4px rgba(0, 188, 212, 0.11),
-        0 16px 34px rgba(0, 166, 184, 0.09),
+        0 0 0 4px rgba(139, 92, 246, 0.11),
+        0 16px 34px rgba(139, 92, 246, 0.09),
         inset 0 1px 0 rgba(255,255,255,.95);
 }
 
@@ -500,13 +504,13 @@
     transform: translateY(-50%);
     border: 0;
     background: transparent;
-    color: #7b93a1;
+    color: #9b8ca8;
     cursor: pointer;
     font-size: 15px;
 }
 
 .auth-eye-btn:hover {
-    color: #007d91;
+    color: #8b5cf6;
 }
 
 .auth-error {
@@ -531,7 +535,7 @@
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    color: #617989;
+    color: #6f637a;
     font-size: 14px;
     font-weight: 750;
     cursor: pointer;
@@ -540,12 +544,12 @@
 .auth-check input {
     width: 16px;
     height: 16px;
-    accent-color: #00a6b8;
+    accent-color: #8b5cf6;
 }
 
 .auth-row a,
 .auth-register a {
-    color: #007d91;
+    color: #8b5cf6;
     font-size: 14px;
     font-weight: 900;
     text-decoration: none;
@@ -553,7 +557,7 @@
 
 .auth-row a:hover,
 .auth-register a:hover {
-    color: #06283d;
+    color: #4c1d95;
 }
 
 .auth-submit-btn {
@@ -569,9 +573,9 @@
     font-weight: 950;
     background:
         radial-gradient(circle at 25% 20%, rgba(255,255,255,.36), transparent 30%),
-        linear-gradient(135deg, #00d5f0 0%, #00a6b8 45%, #007d91 100%);
+        linear-gradient(135deg, #4c1d95 0%, #8b5cf6 58%, #fb7185 100%);
     box-shadow:
-        0 18px 38px rgba(0, 166, 184, 0.30),
+        0 18px 38px rgba(139, 92, 246, 0.30),
         inset 0 1px 0 rgba(255,255,255,.45);
     transition: .35s ease;
 }
@@ -591,7 +595,7 @@
 .auth-submit-btn:hover {
     transform: translateY(-3px);
     box-shadow:
-        0 24px 50px rgba(0, 166, 184, 0.38),
+        0 24px 50px rgba(139, 92, 246, 0.38),
         inset 0 1px 0 rgba(255,255,255,.5);
 }
 
@@ -602,7 +606,7 @@
 .auth-register {
     margin-top: 22px;
     text-align: center;
-    color: #617989;
+    color: #6f637a;
     font-size: 14px;
     font-weight: 650;
 }
@@ -611,7 +615,7 @@
     width: min(100%, 500px);
     margin: 22px auto 0;
     text-align: center;
-    color: #7f97a6;
+    color: #9b8ca8;
     font-size: 13px;
     font-weight: 600;
 }

@@ -1,16 +1,16 @@
 :root {
-    --accent: #4F46E5;
-    --accent-light: #EEF2FF;
-    --accent-dark: #3730A3;
+    --accent: #8B5CF6;
+    --accent-light: #F5F3FF;
+    --accent-dark: #4C1D95;
     --sidebar-bg: #0F172A;
-    --body-bg: #F1F5F9;
-    --border: #E2E8F0;
-    --muted: #94A3B8;
-    --text: #1E293B;
+    --body-bg: #FFFBFF;
+    --border: rgba(139, 92, 246, 0.14);
+    --muted: #9B8CA8;
+    --text: #1F1430;
 }
 
 * {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Manrope', sans-serif;
     box-sizing: border-box;
 }
 
@@ -679,5 +679,3 @@ body {
         padding: 16px;
     }
 }
-
-

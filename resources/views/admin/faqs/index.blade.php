@@ -4,6 +4,15 @@
 
 @section('content')
 
+@php
+    $faqCategories = [
+        'common' => 'Common Questions',
+        'appointment' => 'Appointment',
+        'treatment' => 'Treatment & Timing',
+        'location' => 'Location & Contact',
+    ];
+@endphp
+
 <div class="admin-page-head">
     <div>
         <h2 class="admin-page-title">FAQs</h2>
@@ -59,6 +68,7 @@
                     <th style="width:40px;"></th>
                     <th>ID</th>
                     <th>Question</th>
+                    <th>Category</th>
                     <th>Answer</th>
                     <th>Open</th>
                     <th>Order</th>
@@ -92,6 +102,12 @@
                                     <p class="table-sub-text">FAQ Item</p>
                                 </div>
                             </div>
+                        </td>
+
+                        <td>
+                            <span class="role-tag">
+                                {{ $faqCategories[$faq->category ?? 'common'] ?? ucfirst($faq->category ?? 'Common') }}
+                            </span>
                         </td>
 
                         <td style="color:#475569;">

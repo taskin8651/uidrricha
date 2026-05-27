@@ -11,6 +11,7 @@ class TestimonialController extends Controller
     {
         try {
             $testimonials = Testimonial::where('status', 1)
+                ->orderByDesc('is_featured')
                 ->orderBy('sort_order', 'asc')
                 ->get();
         } catch (\Throwable $exception) {

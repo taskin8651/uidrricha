@@ -11,6 +11,7 @@ class FaqController extends Controller
     {
         try {
             $faqs = Faq::where('status', 1)
+                ->orderBy('category', 'asc')
                 ->orderBy('sort_order', 'asc')
                 ->get();
         } catch (\Throwable $exception) {

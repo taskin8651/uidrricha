@@ -132,7 +132,13 @@ Route::get('/contact', function () {
 
     return view('frontend.contact', compact('serviceSections'));
 })->name('frontend.contact');
-Route::view('/appointment', 'frontend.appointment')->name('frontend.appointment');
+Route::get('/appointment', function () {
+    $serviceSections = ServiceSection::where('status', 1)
+        ->orderBy('sort_order', 'asc')
+        ->get();
+
+    return view('frontend.appointment', compact('serviceSections'));
+})->name('frontend.appointment');
 Route::get('/contact.html', function () {
     $serviceSections = ServiceSection::where('status', 1)
         ->orderBy('sort_order', 'asc')
@@ -140,6 +146,12 @@ Route::get('/contact.html', function () {
 
     return view('frontend.contact', compact('serviceSections'));
 });
-Route::view('/appointment.html', 'frontend.appointment');
+Route::get('/appointment.html', function () {
+    $serviceSections = ServiceSection::where('status', 1)
+        ->orderBy('sort_order', 'asc')
+        ->get();
+
+    return view('frontend.appointment', compact('serviceSections'));
+});
 Route::post('/contact-enquiry', [EnquiryController::class, 'storeContact'])->name('contact.enquiry.store');
 Route::post('/appointment-request', [EnquiryController::class, 'storeAppointment'])->name('appointment.request.store');
