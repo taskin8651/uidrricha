@@ -4,8 +4,7 @@
 @php
     try {
         $websiteSetting = \App\Models\WebsiteSetting::with('media')->first();
-        $footerServices = \App\Models\ServiceSection::where('status', 1)
-            ->orderBy('sort_order', 'asc')
+        $footerServices = \App\Models\ServiceSection::latest()
             ->take(5)
             ->get();
     } catch (\Throwable $exception) {
@@ -34,14 +33,14 @@
     $brandSub = \Illuminate\Support\Str::contains($siteName, 'Dental') ? trim(\Illuminate\Support\Str::of($siteName)->after($brandMain)) : $siteTagline;
     $shortAddress = \Illuminate\Support\Str::limit($clinicAddress, 45);
     $navItems = [
-        ['label' => 'Home', 'route' => 'frontend.home', 'patterns' => ['/', 'index', 'index.html']],
-        ['label' => 'About', 'route' => 'frontend.about', 'patterns' => ['about', 'about.html']],
-        ['label' => 'Doctor', 'route' => 'frontend.dentist-profile', 'patterns' => ['dentist-profile', 'dentist-profile.html']],
-        ['label' => 'Services', 'route' => 'frontend.services.index', 'patterns' => ['services', 'services.html']],
-        ['label' => 'Gallery', 'route' => 'frontend.gallery', 'patterns' => ['gallery', 'gallery.html']],
-        ['label' => 'Testimonials', 'route' => 'frontend.testimonials', 'patterns' => ['testimonials', 'testimonials.html']],
-        ['label' => 'FAQs', 'route' => 'frontend.faq', 'patterns' => ['faq', 'faq.html', 'faqs', 'faqs.html']],
-        ['label' => 'Contact', 'route' => 'frontend.contact', 'patterns' => ['contact', 'contact.html']],
+        ['label' => 'Home', 'route' => 'frontend.home', 'patterns' => ['/', 'index']],
+        ['label' => 'About', 'route' => 'frontend.about', 'patterns' => ['about']],
+        ['label' => 'Doctor', 'route' => 'frontend.dentist-profile', 'patterns' => ['dentist-profile']],
+        ['label' => 'Services', 'route' => 'frontend.services.index', 'patterns' => ['services']],
+        ['label' => 'Gallery', 'route' => 'frontend.gallery', 'patterns' => ['gallery']],
+        ['label' => 'Testimonials', 'route' => 'frontend.testimonials', 'patterns' => ['testimonials']],
+        ['label' => 'FAQs', 'route' => 'frontend.faq', 'patterns' => ['faq', 'faqs']],
+        ['label' => 'Contact', 'route' => 'frontend.contact', 'patterns' => ['contact']],
     ];
 @endphp
 
@@ -358,12 +357,58 @@
     </div>
     <!-- FLOATING BUTTONS END -->
 
+    @if(session('message'))
+        <div class="thankyou-popup is-visible" id="thankyouPopup" role="dialog" aria-modal="true" aria-labelledby="thankyouPopupTitle">
+            <div class="thankyou-popup-backdrop" data-thankyou-close></div>
+
+            <div class="thankyou-popup-card">
+                <button type="button" class="thankyou-popup-close" data-thankyou-close aria-label="Close popup">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+
+                <div class="thankyou-popup-icon">
+                    <i class="bi bi-check2"></i>
+                </div>
+
+                <span class="thankyou-popup-kicker">Request Submitted</span>
+                <h2 id="thankyouPopupTitle">Thank you for reaching out.</h2>
+                <p>{{ session('message') }}</p>
+
+                <div class="thankyou-popup-actions">
+                    <a href="{{ route('frontend.appointment') }}" class="thankyou-popup-primary">
+                        Book Appointment
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <button type="button" class="thankyou-popup-secondary" data-thankyou-close>
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
+
 
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    @if(session('message'))
+        <script>
+            document.querySelectorAll('[data-thankyou-close]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    document.getElementById('thankyouPopup')?.classList.remove('is-visible');
+                });
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    document.getElementById('thankyouPopup')?.classList.remove('is-visible');
+                }
+            });
+        </script>
+    @endif
 </body>
 
 </html>

@@ -20281,3 +20281,155 @@ h4 {
 /* ==================================================
    SERVICE DETAILS PAGE END
 ================================================== */
+
+/* ==================================================
+   THANK YOU POPUP START
+================================================== */
+.thankyou-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.thankyou-popup.is-visible {
+  display: flex;
+}
+
+.thankyou-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.68);
+  backdrop-filter: blur(10px);
+}
+
+.thankyou-popup-card {
+  position: relative;
+  width: min(480px, 100%);
+  padding: 34px 30px 28px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.28);
+  text-align: center;
+  animation: thankyouPop 0.28s ease-out;
+}
+
+.thankyou-popup-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #334155;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.thankyou-popup-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #15803d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+}
+
+.thankyou-popup-kicker {
+  display: block;
+  margin-bottom: 8px;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.thankyou-popup-card h2 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.thankyou-popup-card p {
+  margin: 0;
+  color: #475569;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.thankyou-popup-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thankyou-popup-primary,
+.thankyou-popup-secondary {
+  min-height: 46px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.thankyou-popup-primary {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.thankyou-popup-secondary {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+@keyframes thankyouPop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 575px) {
+  .thankyou-popup-card {
+    padding: 30px 20px 22px;
+  }
+
+  .thankyou-popup-card h2 {
+    font-size: 24px;
+  }
+
+  .thankyou-popup-primary,
+  .thankyou-popup-secondary {
+    width: 100%;
+  }
+}
+
+/* ==================================================
+   THANK YOU POPUP END
+================================================== */

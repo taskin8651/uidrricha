@@ -11,6 +11,13 @@
         'treatment' => 'Treatment & Timing',
         'location' => 'Location & Contact',
     ];
+
+    $selectedCategory = [
+        'common-questions' => 'common',
+        'appointment-questions' => 'appointment',
+        'treatment-questions' => 'treatment',
+        'location-questions' => 'location',
+    ][$faq->category] ?? ($faq->category ?? 'common');
 @endphp
 
 <div class="admin-page-head">
@@ -79,7 +86,7 @@
                                 id="category"
                                 class="field-input {{ $errors->has('category') ? 'error' : '' }}">
                             @foreach($faqCategories as $value => $label)
-                                <option value="{{ $value }}" {{ old('category', $faq->category ?? 'common') === $value ? 'selected' : '' }}>
+                                <option value="{{ $value }}" {{ old('category', $selectedCategory) === $value ? 'selected' : '' }}>
                                     {{ $label }}
                                 </option>
                             @endforeach

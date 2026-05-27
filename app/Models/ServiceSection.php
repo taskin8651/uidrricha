@@ -17,23 +17,9 @@ class ServiceSection extends Model implements HasMedia
     protected $fillable = [
         'slug',
         'card_icon',
-        'tag',
         'title',
         'short_description',
         'description',
-        'button_1_text',
-        'button_1_url',
-        'button_1_icon',
-        'button_2_text',
-        'button_2_url',
-        'button_2_icon',
-        'float_icon',
-        'float_title',
-        'float_subtitle',
-        'image_alt',
-        'layout_type',
-        'sort_order',
-        'status',
     ];
 
     protected $dates = [
@@ -42,22 +28,10 @@ class ServiceSection extends Model implements HasMedia
         'deleted_at',
     ];
 
-    public function items()
-    {
-        return $this->hasMany(ServiceSectionItem::class)
-            ->orderBy('sort_order', 'asc');
-    }
-
-    public function activeItems()
-    {
-        return $this->hasMany(ServiceSectionItem::class)
-            ->where('status', 1)
-            ->orderBy('sort_order', 'asc');
-    }
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('service_section_image')->singleFile();
+        $this->addMediaCollection('service_section_document')->singleFile();
     }
 
     protected function serializeDate(DateTimeInterface $date)

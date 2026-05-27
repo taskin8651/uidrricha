@@ -60,7 +60,7 @@ class HomeController
             [
                 'title' => 'Services',
                 'count' => ServiceSection::count(),
-                'meta' => ServiceSection::where('status', 1)->count() . ' active sections',
+                'meta' => ServiceSection::count() . ' services',
                 'icon' => 'fa-tooth',
                 'route' => route('admin.service-sections.index'),
             ],

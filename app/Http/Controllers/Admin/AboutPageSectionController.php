@@ -53,7 +53,7 @@ class AboutPageSectionController extends Controller
             'intro_description_1' => 'OM Dental Clinic is focused on providing high-quality dental treatment in a clean, comfortable and patient-friendly environment. We believe in accurate diagnosis, honest consultation and safe treatment planning.',
             'intro_description_2' => 'From dental consultation and teeth cleaning to root canal treatment, implants, braces and smile designing, our clinic offers complete dental solutions for families.',
             'intro_button_text' => 'Book Appointment',
-            'intro_button_url' => '/appointment.html',
+            'intro_button_url' => '/appointment',
             'experience_number' => '10+',
             'experience_text' => 'Years of Smile Care',
 

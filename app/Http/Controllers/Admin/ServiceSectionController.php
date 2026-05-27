@@ -7,9 +7,7 @@ use App\Http\Requests\MassDestroyServiceSectionRequest;
 use App\Http\Requests\StoreServiceSectionRequest;
 use App\Http\Requests\UpdateServiceSectionRequest;
 use App\Models\ServiceSection;
-use App\Models\ServiceSectionItem;
 use Gate;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,8 +17,8 @@ class ServiceSectionController extends Controller
     {
         abort_if(Gate::denies('service_section_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $serviceSections = ServiceSection::with('media', 'items')
-            ->orderBy('sort_order', 'asc')
+        $serviceSections = ServiceSection::with('media')
+            ->latest()
             ->get();
 
         return view('admin.serviceSections.index', compact('serviceSections'));
@@ -35,8 +33,7 @@ class ServiceSectionController extends Controller
 
     public function store(StoreServiceSectionRequest $request)
     {
-        $data = $request->except(['image', 'items']);
-        $data['status'] = $request->has('status') ? 1 : 0;
+        $data = $request->except(['image', 'document']);
         $data['slug'] = $this->uniqueSlug($data['slug'] ?? $data['title']);
 
         $serviceSection = ServiceSection::create($data);
@@ -47,18 +44,22 @@ class ServiceSectionController extends Controller
                 ->toMediaCollection('service_section_image');
         }
 
-        $this->syncItems($serviceSection, $request->items ?? []);
+        if ($request->hasFile('document')) {
+            $serviceSection
+                ->addMediaFromRequest('document')
+                ->toMediaCollection('service_section_document');
+        }
 
         return redirect()
             ->route('admin.service-sections.index')
-            ->with('message', 'Service section created successfully.');
+            ->with('message', 'Service created successfully.');
     }
 
     public function show(ServiceSection $serviceSection)
     {
         abort_if(Gate::denies('service_section_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $serviceSection->load('items', 'media');
+        $serviceSection->load('media');
 
         return view('admin.serviceSections.show', compact('serviceSection'));
     }
@@ -67,15 +68,14 @@ class ServiceSectionController extends Controller
     {
         abort_if(Gate::denies('service_section_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $serviceSection->load('items', 'media');
+        $serviceSection->load('media');
 
         return view('admin.serviceSections.edit', compact('serviceSection'));
     }
 
     public function update(UpdateServiceSectionRequest $request, ServiceSection $serviceSection)
     {
-        $data = $request->except(['image', 'items']);
-        $data['status'] = $request->has('status') ? 1 : 0;
+        $data = $request->except(['image', 'document']);
         $data['slug'] = $this->uniqueSlug($data['slug'] ?? $data['title'], $serviceSection->id);
 
         $serviceSection->update($data);
@@ -86,12 +86,15 @@ class ServiceSectionController extends Controller
                 ->toMediaCollection('service_section_image');
         }
 
-        $serviceSection->items()->delete();
-        $this->syncItems($serviceSection, $request->items ?? []);
+        if ($request->hasFile('document')) {
+            $serviceSection
+                ->addMediaFromRequest('document')
+                ->toMediaCollection('service_section_document');
+        }
 
         return redirect()
             ->route('admin.service-sections.index')
-            ->with('message', 'Service section updated successfully.');
+            ->with('message', 'Service updated successfully.');
     }
 
     public function destroy(ServiceSection $serviceSection)
@@ -100,7 +103,7 @@ class ServiceSectionController extends Controller
 
         $serviceSection->delete();
 
-        return back()->with('message', 'Service section deleted successfully.');
+        return back()->with('message', 'Service deleted successfully.');
     }
 
     public function massDestroy(MassDestroyServiceSectionRequest $request)
@@ -108,24 +111,6 @@ class ServiceSectionController extends Controller
         ServiceSection::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
-    }
-
-    private function syncItems(ServiceSection $serviceSection, array $items)
-    {
-        foreach ($items as $item) {
-            if (empty($item['title']) && empty($item['description'])) {
-                continue;
-            }
-
-            ServiceSectionItem::create([
-                'service_section_id' => $serviceSection->id,
-                'icon' => $item['icon'] ?? null,
-                'title' => $item['title'] ?? null,
-                'description' => $item['description'] ?? null,
-                'sort_order' => $item['sort_order'] ?? 0,
-                'status' => isset($item['status']) ? 1 : 0,
-            ]);
-        }
     }
 
     private function uniqueSlug(?string $value, ?int $ignoreId = null): string

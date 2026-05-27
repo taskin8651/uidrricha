@@ -99,59 +99,33 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 
 
 Route::get('/index', [IndexController::class, 'index'])->name('frontend.index');
-Route::get('/index.html', [IndexController::class, 'index']);
 
 Route::get('/services', [ServicesController::class, 'index'])->name('frontend.services.index');
-Route::get('/services.html', [ServicesController::class, 'index']);
 Route::get('/services/{slug}', [ServicesController::class, 'show'])->name('frontend.services.show');
 
 Route::get('/about', [AboutController::class, 'index'])->name('frontend.about');
-Route::get('/about.html', [AboutController::class, 'index']);
 
 
 Route::get('/dentist-profile', [DentistController::class, 'index'])->name('frontend.dentist-profile');
-Route::get('/dentist-profile.html', [DentistController::class, 'index']);
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('frontend.gallery');
-Route::get('/gallery.html', [GalleryController::class, 'index']);
 
 
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('frontend.testimonials');
-Route::get('/testimonials.html', [TestimonialController::class, 'index']);
 
 
 Route::get('/faq', [FaqController::class, 'index'])->name('frontend.faq');
-Route::get('/faq.html', [FaqController::class, 'index']);
 Route::get('/faqs', [FaqController::class, 'index']);
-Route::get('/faqs.html', [FaqController::class, 'index']);
 
 Route::get('/contact', function () {
-    $serviceSections = ServiceSection::where('status', 1)
-        ->orderBy('sort_order', 'asc')
-        ->get();
+    $serviceSections = ServiceSection::latest()->get();
 
     return view('frontend.contact', compact('serviceSections'));
 })->name('frontend.contact');
 Route::get('/appointment', function () {
-    $serviceSections = ServiceSection::where('status', 1)
-        ->orderBy('sort_order', 'asc')
-        ->get();
+    $serviceSections = ServiceSection::latest()->get();
 
     return view('frontend.appointment', compact('serviceSections'));
 })->name('frontend.appointment');
-Route::get('/contact.html', function () {
-    $serviceSections = ServiceSection::where('status', 1)
-        ->orderBy('sort_order', 'asc')
-        ->get();
-
-    return view('frontend.contact', compact('serviceSections'));
-});
-Route::get('/appointment.html', function () {
-    $serviceSections = ServiceSection::where('status', 1)
-        ->orderBy('sort_order', 'asc')
-        ->get();
-
-    return view('frontend.appointment', compact('serviceSections'));
-});
 Route::post('/contact-enquiry', [EnquiryController::class, 'storeContact'])->name('contact.enquiry.store');
 Route::post('/appointment-request', [EnquiryController::class, 'storeAppointment'])->name('appointment.request.store');

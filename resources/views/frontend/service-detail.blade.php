@@ -16,7 +16,7 @@
     <div class="services-breadcrumb-box reveal-up">
       <span class="section-badge">
         <i class="{{ $serviceSection->card_icon ?: 'bi bi-clipboard2-pulse' }}"></i>
-        {{ $serviceSection->tag ?: 'Dental Service' }}
+        Dental Service
       </span>
 
       <h1>{{ $serviceSection->title }}</h1>
@@ -60,7 +60,7 @@
 
       <div class="services-intro-card premium-card premium-hover reveal-up reveal-delay-1">
         <div class="facility-image-box">
-          <img src="{{ $serviceImage }}" alt="{{ $serviceSection->image_alt ?: $serviceSection->title }}">
+          <img src="{{ $serviceImage }}" alt="{{ $serviceSection->title }}">
         </div>
 
         <div class="services-intro-card-content mt-3">
@@ -80,34 +80,6 @@
     </div>
   </div>
 </section>
-
-@if($serviceSection->activeItems->count())
-  <section class="services-grid-section section-padding">
-    <div class="container">
-      <div class="section-heading text-center reveal-up">
-        <span class="section-badge">
-          <i class="bi bi-list-check"></i>
-          Benefits
-        </span>
-
-        <h2>What this service includes.</h2>
-      </div>
-
-      <div class="service-grid">
-        @foreach($serviceSection->activeItems as $index => $item)
-          <div class="service-card premium-card premium-hover reveal-up reveal-delay-{{ ($index % 3) + 1 }}">
-            <span class="service-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-            <div class="service-icon premium-icon">
-              <i class="{{ $item->icon ?: 'bi bi-check2-circle' }}"></i>
-            </div>
-            <h3>{{ $item->title }}</h3>
-            <p>{{ $item->description }}</p>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </section>
-@endif
 
 @if($relatedServices->count())
   <section class="services-grid-section section-padding">

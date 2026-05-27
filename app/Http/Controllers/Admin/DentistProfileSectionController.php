@@ -76,7 +76,7 @@ class DentistProfileSectionController extends Controller
             'specialization_value' => 'Root Canal, Cosmetic Dentistry',
 
             'button_1_text' => 'Book Appointment',
-            'button_1_url' => '/appointment.html',
+            'button_1_url' => '/appointment',
             'button_1_icon' => 'fa-solid fa-calendar-check',
 
             'button_2_text' => 'Call Now',

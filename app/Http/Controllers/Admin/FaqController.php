@@ -32,6 +32,7 @@ class FaqController extends Controller
     {
         $data = $request->all();
 
+        $data['category'] = $this->normalizeCategory($data['category'] ?? null);
         $data['is_open'] = $request->has('is_open') ? 1 : 0;
         $data['status']  = $request->has('status') ? 1 : 0;
 
@@ -60,6 +61,7 @@ class FaqController extends Controller
     {
         $data = $request->all();
 
+        $data['category'] = $this->normalizeCategory($data['category'] ?? null);
         $data['is_open'] = $request->has('is_open') ? 1 : 0;
         $data['status']  = $request->has('status') ? 1 : 0;
 
@@ -84,5 +86,15 @@ class FaqController extends Controller
         Faq::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    private function normalizeCategory(?string $category): string
+    {
+        return [
+            'common-questions' => 'common',
+            'appointment-questions' => 'appointment',
+            'treatment-questions' => 'treatment',
+            'location-questions' => 'location',
+        ][$category] ?? ($category ?: 'common');
     }
 }

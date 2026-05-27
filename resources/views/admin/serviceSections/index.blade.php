@@ -1,52 +1,35 @@
 @extends('layouts.admin')
 
-@section('page-title', 'Service Sections')
+@section('page-title', 'Services')
 
 @section('content')
 
 <div class="admin-page-head">
     <div>
-        <h2 class="admin-page-title">Service Sections</h2>
+        <h2 class="admin-page-title">Services</h2>
         <p class="admin-page-subtitle">
-            Manage dynamic dental service sections, images and benefit cards
+            Manage service title, icon, description, image and document.
         </p>
     </div>
 
     @can('service_section_create')
         <a href="{{ route('admin.service-sections.create') }}" class="btn-primary">
             <i class="fas fa-plus"></i>
-            Add Service Section
+            Add Service
         </a>
     @endcan
 </div>
 
 <div class="stats-grid">
     <div class="stat-card">
-        <p class="stat-label">Total Sections</p>
+        <p class="stat-label">Total Services</p>
         <p class="stat-value">{{ $serviceSections->count() }}</p>
-    </div>
-
-    <div class="stat-card">
-        <p class="stat-label">Active</p>
-        <p class="stat-value">{{ $serviceSections->where('status', 1)->count() }}</p>
-    </div>
-
-    <div class="stat-card">
-        <p class="stat-label">Inactive</p>
-        <p class="stat-value">{{ $serviceSections->where('status', 0)->count() }}</p>
-    </div>
-
-    <div class="stat-card">
-        <p class="stat-label">Benefit Cards</p>
-        <p class="stat-value">
-            {{ $serviceSections->sum(function($section) { return $section->items->count(); }) }}
-        </p>
     </div>
 </div>
 
 <div class="page-card">
     <div class="page-card-header">
-        <p class="page-card-title">All Service Sections</p>
+        <p class="page-card-title">All Services</p>
 
         <span class="page-card-note">
             <i class="fas fa-info-circle"></i>
@@ -62,10 +45,7 @@
                     <th>ID</th>
                     <th>Service</th>
                     <th>Image</th>
-                    <th>Layout</th>
-                    <th>Cards</th>
-                    <th>Order</th>
-                    <th>Status</th>
+                    <th>Document</th>
                     <th style="text-align:right;">Actions</th>
                 </tr>
             </thead>
@@ -87,13 +67,13 @@
                                 @endphp
 
                                 <div class="avatar-circle" style="background: {{ $color }};">
-                                    <i class="fas fa-tooth"></i>
+                                    <i class="{{ $serviceSection->card_icon ?: 'fas fa-tooth' }}"></i>
                                 </div>
 
                                 <div>
                                     <p class="table-main-text">{{ $serviceSection->title }}</p>
                                     <p class="table-sub-text">
-                                        {{ $serviceSection->tag ?: 'Dental Service' }}
+                                        {{ $serviceSection->short_description ?: \Illuminate\Support\Str::limit(strip_tags($serviceSection->description), 80) }}
                                     </p>
                                 </div>
                             </div>
@@ -102,7 +82,7 @@
                         <td>
                             @if($serviceSection->getFirstMediaUrl('service_section_image'))
                                 <img src="{{ $serviceSection->getFirstMediaUrl('service_section_image') }}"
-                                     alt="{{ $serviceSection->image_alt }}"
+                                     alt="{{ $serviceSection->title }}"
                                      style="width:70px;height:52px;object-fit:cover;border-radius:14px;">
                             @else
                                 <div style="width:70px;height:52px;border-radius:14px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;color:#94A3B8;">
@@ -112,34 +92,13 @@
                         </td>
 
                         <td>
-                            <div class="tag-wrap">
-                                @if($serviceSection->layout_type == 'image_left')
-                                    <span class="role-tag">Image Left</span>
-                                @else
-                                    <span class="role-tag">Image Right</span>
-                                @endif
-                            </div>
-                        </td>
-
-                        <td style="color:#475569;">
-                            {{ $serviceSection->items->count() }}
-                        </td>
-
-                        <td style="color:#475569;">
-                            {{ $serviceSection->sort_order }}
-                        </td>
-
-                        <td>
-                            @if($serviceSection->status)
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="status-dot status-success"></span>
-                                    <span style="font-size:12.5px; color:#374151;">Active</span>
-                                </div>
+                            @if($serviceSection->getFirstMediaUrl('service_section_document'))
+                                <a href="{{ $serviceSection->getFirstMediaUrl('service_section_document') }}" target="_blank" class="btn-outline">
+                                    <i class="fas fa-file-alt"></i>
+                                    View
+                                </a>
                             @else
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="status-dot status-warning"></span>
-                                    <span style="font-size:12.5px; color:#92400E;">Inactive</span>
-                                </div>
+                                <span class="table-sub-text">No document</span>
                             @endif
                         </td>
 
@@ -178,7 +137,6 @@
                     </tr>
                 @endforeach
             </tbody>
-
         </table>
     </div>
 </div>
@@ -195,8 +153,8 @@ $(function () {
         deleteText: "{{ trans('global.datatables.delete') }}",
         zeroSelectedText: "{{ trans('global.datatables.zero_selected') }}",
         confirmText: "{{ trans('global.areYouSure') }}",
-        searchPlaceholder: 'Search service sections...',
-        infoText: 'Showing _START_–_END_ of _TOTAL_ service sections'
+        searchPlaceholder: 'Search services...',
+        infoText: 'Showing _START_ to _END_ of _TOTAL_ services'
     });
 });
 </script>

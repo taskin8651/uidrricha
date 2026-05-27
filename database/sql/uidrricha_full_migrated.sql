@@ -265,7 +265,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('7', '2025_12_21_0
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('8', '2025_12_21_000007_create_permission_role_pivot_table', '1');
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('9', '2025_12_21_000008_create_role_user_pivot_table', '1');
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('10', '2026_05_18_103657_create_service_sections_table', '1');
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('11', '2026_05_18_103658_create_service_section_items_table', '1');
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('12', '2026_05_19_055238_create_about_page_sections_table', '1');
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('13', '2026_05_19_063447_create_dentist_profile_sections_table', '1');
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES ('14', '2026_05_19_064848_create_gallery_categories_table', '1');
@@ -357,45 +356,14 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-DROP TABLE IF EXISTS `service_section_items`;
-CREATE TABLE `service_section_items` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `service_section_id` bigint(20) unsigned NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `sort_order` int(11) NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `service_section_items_service_section_id_foreign` (`service_section_id`),
-  CONSTRAINT `service_section_items_service_section_id_foreign` FOREIGN KEY (`service_section_id`) REFERENCES `service_sections` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 DROP TABLE IF EXISTS `service_sections`;
 CREATE TABLE `service_sections` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) DEFAULT NULL,
   `card_icon` varchar(255) DEFAULT NULL,
-  `tag` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` text DEFAULT NULL,
   `description` longtext DEFAULT NULL,
-  `button_1_text` varchar(255) DEFAULT NULL,
-  `button_1_url` varchar(255) DEFAULT NULL,
-  `button_1_icon` varchar(255) DEFAULT NULL,
-  `button_2_text` varchar(255) DEFAULT NULL,
-  `button_2_url` varchar(255) DEFAULT NULL,
-  `button_2_icon` varchar(255) DEFAULT NULL,
-  `float_icon` varchar(255) DEFAULT NULL,
-  `float_title` varchar(255) DEFAULT NULL,
-  `float_subtitle` varchar(255) DEFAULT NULL,
-  `image_alt` varchar(255) DEFAULT NULL,
-  `layout_type` enum('image_left','image_right') NOT NULL DEFAULT 'image_left',
-  `sort_order` int(11) NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,

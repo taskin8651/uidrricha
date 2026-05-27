@@ -13,11 +13,24 @@ class FaqController extends Controller
             $faqs = Faq::where('status', 1)
                 ->orderBy('category', 'asc')
                 ->orderBy('sort_order', 'asc')
-                ->get();
+                ->get()
+                ->each(function (Faq $faq) {
+                    $faq->category = $this->normalizeCategory($faq->category);
+                });
         } catch (\Throwable $exception) {
             $faqs = collect();
         }
 
         return view('frontend.faqs', compact('faqs'));
+    }
+
+    private function normalizeCategory(?string $category): string
+    {
+        return [
+            'common-questions' => 'common',
+            'appointment-questions' => 'appointment',
+            'treatment-questions' => 'treatment',
+            'location-questions' => 'location',
+        ][$category] ?? ($category ?: 'common');
     }
 }

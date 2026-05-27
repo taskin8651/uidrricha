@@ -228,7 +228,7 @@
                         <input type="text"
                                name="button_1_url"
                                value="{{ old('button_1_url', $dentistProfileSection->button_1_url) }}"
-                               placeholder="/appointment.html"
+                               placeholder="/appointment"
                                class="field-input">
                     </div>
                 </div>

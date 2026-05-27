@@ -13,29 +13,9 @@ class CreateServiceSectionsTable extends Migration
 
             $table->string('slug')->nullable()->unique();
             $table->string('card_icon')->nullable();
-            $table->string('tag')->nullable();
             $table->string('title')->nullable();
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
-
-            $table->string('button_1_text')->nullable();
-            $table->string('button_1_url')->nullable();
-            $table->string('button_1_icon')->nullable();
-
-            $table->string('button_2_text')->nullable();
-            $table->string('button_2_url')->nullable();
-            $table->string('button_2_icon')->nullable();
-
-            $table->string('float_icon')->nullable();
-            $table->string('float_title')->nullable();
-            $table->string('float_subtitle')->nullable();
-
-            $table->string('image_alt')->nullable();
-
-            $table->enum('layout_type', ['image_left', 'image_right'])->default('image_left');
-
-            $table->integer('sort_order')->default(0);
-            $table->boolean('status')->default(1);
 
             $table->timestamps();
             $table->softDeletes();

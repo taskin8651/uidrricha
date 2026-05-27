@@ -153,7 +153,7 @@
                                    name="intro_button_url"
                                    id="intro_button_url"
                                    value="{{ old('intro_button_url', $aboutPageSection->intro_button_url) }}"
-                                   placeholder="/appointment.html"
+                                   placeholder="/appointment"
                                    class="field-input">
                         </div>
                     </div>

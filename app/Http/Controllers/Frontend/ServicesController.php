@@ -10,12 +10,8 @@ class ServicesController extends Controller
     public function index()
     {
         try {
-            $serviceSections = ServiceSection::with([
-                    'activeItems',
-                    'media',
-                ])
-                ->where('status', 1)
-                ->orderBy('sort_order', 'asc')
+            $serviceSections = ServiceSection::with('media')
+                ->latest()
                 ->get();
         } catch (\Throwable $exception) {
             $serviceSections = collect();
@@ -27,14 +23,12 @@ class ServicesController extends Controller
     public function show(string $slug)
     {
         try {
-            $serviceSection = ServiceSection::with(['activeItems', 'media'])
-                ->where('status', 1)
+            $serviceSection = ServiceSection::with('media')
                 ->where('slug', $slug)
                 ->firstOrFail();
 
-            $relatedServices = ServiceSection::where('status', 1)
-                ->where('id', '!=', $serviceSection->id)
-                ->orderBy('sort_order', 'asc')
+            $relatedServices = ServiceSection::where('id', '!=', $serviceSection->id)
+                ->latest()
                 ->take(4)
                 ->get();
         } catch (\Throwable $exception) {

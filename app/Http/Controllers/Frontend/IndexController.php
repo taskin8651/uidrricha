@@ -24,9 +24,8 @@ class IndexController extends Controller
                 ->orderBy('sort_order', 'asc')
                 ->take(3)
                 ->get();
-            $serviceSections = ServiceSection::with(['activeItems', 'media'])
-                ->where('status', 1)
-                ->orderBy('sort_order', 'asc')
+            $serviceSections = ServiceSection::with('media')
+                ->latest()
                 ->take(4)
                 ->get();
             $testimonials = Testimonial::where('status', 1)
