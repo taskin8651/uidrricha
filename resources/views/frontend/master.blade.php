@@ -253,6 +253,9 @@
                             <li><a href="{{ route('frontend.about') }}">About Clinic</a></li>
                             <li><a href="{{ route('frontend.dentist-profile') }}">Doctor Profile</a></li>
                             <li><a href="{{ route('frontend.services.index') }}">Dental Services</a></li>
+                            <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                            <li><a href="{{ route('frontend.faq') }}">FAQs</a></li>
+                            <li><a href="{{ route('frontend.testimonials') }}">Testimonials</a></li>
                             <li><a href="{{ route('frontend.appointment') }}">Appointment</a></li>
                             <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
                         </ul>
