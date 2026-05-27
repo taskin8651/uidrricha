@@ -38,8 +38,7 @@
         ['label' => 'Doctor', 'route' => 'frontend.dentist-profile', 'patterns' => ['dentist-profile']],
         ['label' => 'Services', 'route' => 'frontend.services.index', 'patterns' => ['services']],
         ['label' => 'Gallery', 'route' => 'frontend.gallery', 'patterns' => ['gallery']],
-        ['label' => 'Testimonials', 'route' => 'frontend.testimonials', 'patterns' => ['testimonials']],
-        ['label' => 'FAQs', 'route' => 'frontend.faq', 'patterns' => ['faq', 'faqs']],
+        
         ['label' => 'Contact', 'route' => 'frontend.contact', 'patterns' => ['contact']],
     ];
 @endphp
