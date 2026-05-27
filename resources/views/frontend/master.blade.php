@@ -160,8 +160,12 @@
 
             <div class="mobile-menu-head">
                 <a href="{{ route('frontend.home') }}" class="mobile-brand">
-                    <span>{{ $brandMain }}</span>
-                    <small>{{ $brandSub }}</small>
+                    @if($logoUrl)
+                        <img src="{{ $logoUrl }}" alt="{{ $siteName }} Logo">
+                    @else
+                        <span>{{ $brandMain }}</span>
+                        <small>{{ $brandSub }}</small>
+                    @endif
                 </a>
 
                 <button class="mobile-close" id="mobileCloseBtn" type="button" aria-label="Close Menu">
